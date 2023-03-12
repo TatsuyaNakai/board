@@ -2,17 +2,13 @@ class CreateTables < ActiveRecord::Migration[4.2]
   def up
     # 管理者
     create_table :admins do |t|
-      t.string      :last_name,           null: false
-      t.string      :first_name,          null: false
-      t.text        :note
+      t.string      :name,           null: false
       t.timestamps
     end
 
     # カテゴリ
     create_table :categories do |t|
       t.string      :name,            null: false
-      t.string      :status,          null: false, default: 'draft'
-      t.text        :note
       t.timestamps
     end
 
@@ -25,7 +21,6 @@ class CreateTables < ActiveRecord::Migration[4.2]
       t.string     :email
       t.string     :title
       t.string     :body,            null: false
-      t.string     :note
       t.timestamps
     end
   end

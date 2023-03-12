@@ -3,16 +3,15 @@
 # Table name: posts
 #
 #  id           :integer          not null, primary key
-#  category_id  :integer          not null
+#  author_name  :string(255)
+#  body         :string(255)      not null
+#  email        :string(255)
 #  session_code :string(255)      not null
 #  status       :string(255)      default("draft"), not null
-#  author_name  :string(255)
-#  email        :string(255)
 #  title        :string(255)
-#  body         :string(255)      not null
-#  note         :string(255)
 #  created_at   :datetime
 #  updated_at   :datetime
+#  category_id  :integer          not null
 #
 class Post < ApplicationRecord
   # モジュール
@@ -24,7 +23,7 @@ class Post < ApplicationRecord
 
 
   # アクセサ
-  attr_accessible :session_code, :status, :author_name, :email, :title, :body, :note
+  attr_accessible :session_code, :status, :author_name, :email, :title, :body
 
 
   # 関連
@@ -60,9 +59,7 @@ class Post < ApplicationRecord
   validates :body,                  presence: true,
                                     length: { maximum: 255 }
                                     # uniqueness: true,
-  validates :note,                  # presence: true,
-                                    length: { maximum: 1024, allow_blank: true }
-                                    # uniqueness: true,
+
 
   # クラス変数
 
