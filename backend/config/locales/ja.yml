@@ -1,0 +1,63 @@
+ja:
+  devise:
+    confirmations:
+      confirmed: 'アカウントを本登録しました。'
+      send_instructions: '本人確認用のメールがあなたのEメールに送られました。メール内のリンクから本登録させてください。'
+      send_paranoid_instructions: 'もしあなたのEメールが見つかった場合、本人確認についてのメールが数分以内に送られます。'
+    failure:
+      already_authenticated: '既にログインしています。'
+      inactive: 'アカウントがアクティベートされていません。'
+      invalid: 'パスワードが間違っています、または、登録されていないEメールです。'
+      locked: 'あなたのアカウントは凍結されています。'
+      last_attempt: "You have one more attempt before your account is locked."
+      not_found_in_database: 'パスワードが間違っています、または、登録されていないEメールです。'
+      timeout: 'セッションがタイムアウトしました。もう一度ログインしてください。'
+      unauthenticated: 'ログインしてください。'
+      unconfirmed: '仮登録状態です。本人確認用メールから本登録を行ってください。再度、アカウント登録をすると、本人確認用メール再送できます。'
+    mailer:
+      confirmation_instructions:
+        subject: '【${application.name}】 ご登録の確認(自動配信メール)'
+      reconfirmation_instructions:
+        subject: '【${application.name}】 Eメール変更のお願い(自動配信メール)'
+      reset_password_instructions:
+        subject: '【${application.name}】 パスワード再設定のお願い(自動配信メール)'
+      unlock_instructions:
+        subject: 'アカウントの凍結解除'
+      email_changed:
+        subject: '【${application.name}】 Eメールが変更されました(自動配信メール)'
+    omniauth_callbacks:
+      success: '%{kind} アカウントによる個人認証に成功しました。'
+      failure: '%{kind} アカウントによる個人認証に失敗しました。もう一度お試しください。'
+    passwords:
+      no_token: "このページにはアクセスできません。パスワード復元メールのリンクをコピーした場合には、正しい URL かどうかをお確かめください。"
+      send_instructions: 'パスワードのリセット方法を数分以内にメールでご連絡します。'
+      send_paranoid_instructions: "もしあなたのEメールが見つかった場合、パスワード復元用のメールが数分以内に送られます。"
+      updated: 'パスワードを変更しました。'
+      updated_not_active: 'パスワードが正しく変更されました。'
+    registrations:
+      destroyed: 'アカウントを削除しました。またのご利用をお待ちしております。'
+      signed_up: '登録が完了しました。'
+      signed_up_but_inactive: 'アカウント登録を受け付けました。しかしまだ有効化されておらず、ログインできません。'
+      signed_up_but_locked: 'アカウント登録を受け付けました。しかし、アカウントが凍結されているためログインできません。'
+      signed_up_but_unconfirmed: '本人確認用のメールがあなたのEメールに送られました。メール内のリンクから本登録させてください。'
+      updated: 'アカウント情報を変更しました。'
+      update_needs_confirmation: 'アカウント情報を変更しました。また、Eメール変更確認メールをお送りしましたのでご確認をお願いします。'
+      reset_reconfirmation: 'Eメール変更を取り消しました。'
+    sessions:
+      signed_in: 'ログインしました。'
+      signed_out: 'ログアウトしました。'
+      already_signed_out: "正常にログアウトしました。"
+    unlocks:
+      send_instructions: 'アカウントの凍結解除方法を数分以内にメールでご連絡します。'
+      send_paranoid_instructions: 'アカウントが見つかった場合、アカウントの凍結解除方法を数分以内にメールでご連絡します。'
+      unlocked: 'アカウントを凍結解除しました。ログインしています。'
+  errors:
+    messages:
+      already_confirmed: "は既に登録済みですのでログインしてください"
+      confirmation_period_expired: "の確認期限が切れました。%{period}以内に確認する必要があります。 新しくリクエストしてください"
+      expired: "の期限が切れましたので、新しくリクエストしてください"
+      not_found: "は見つかりませんでした"
+      not_locked: "は凍結されていません"
+      not_saved:
+        one: "1件のエラーがあります。"
+        other: "%{count}件のエラーがあります。"
