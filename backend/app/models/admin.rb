@@ -47,10 +47,9 @@ class Admin < ApplicationRecord
 
   # バリデーション
   validates :email,                 presence: true,
-                                    length: { maximum: 255, allow_blank: true },
                                     format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :encrypted_password,    presence: true,
-                                    length: { maximum: 255, allow_blank: true }
+                                    length: { maximum: 255 }
                                     # uniqueness: true,
 
 

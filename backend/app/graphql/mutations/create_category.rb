@@ -10,7 +10,7 @@ module Mutations
 
     # resolver
     def resolve(name:)
-      category = Category.new(name)
+      category = Category.new(name: name)
       if category.save
         { result: true }
       else

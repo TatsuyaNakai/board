@@ -22,7 +22,7 @@ class Post < ApplicationRecord
 
 
   # アクセサ
-  attr_accessible :session_code, :status, :author_name, :email, :title, :body
+  attr_accessible :category_id, :status, :author_name, :email, :title, :body
 
 
   # 関連
@@ -43,14 +43,15 @@ class Post < ApplicationRecord
                                     # length: { maximum: 255, allow_blank: true },
                                     # uniqueness: true,
   validates :author_name,           # presence: true,
-                                    length: { maximum: 255, allow_blank: true }
-                                    # uniqueness: true,
-  validates :email,                 #presence: true,
-                                    length: { maximum: 255, allow_blank: true },
+                                    length: { maximum: 255 },
+                                    allow_blank: true
+  validates :email,                 # presence: true,
+                                    length: { maximum: 255 },
+                                    allow_blank: true,
                                     format: { with: URI::MailTo::EMAIL_REGEXP }
-                                    # uniqueness: true,
   validates :title,                 # presence: true,
-                                    length: { maximum: 255, allow_blank: true }
+                                    length: { maximum: 255 },
+                                    allow_blank: true
                                     # uniqueness: true,
   validates :body,                  presence: true,
                                     length: { maximum: 255 }

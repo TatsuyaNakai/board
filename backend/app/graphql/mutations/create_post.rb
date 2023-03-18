@@ -7,7 +7,6 @@ module Mutations
 
     # argument
     argument :category_id,  ID,     required: true
-    argument :session_code, String, required: true
     argument :author_name,  String, required: false
     argument :email,        String, required: false
     argument :title,        String, required: false
@@ -15,7 +14,13 @@ module Mutations
 
     # resolver
     def resolve(**args)
-      post = Post.new(args)
+      post = Post.new(
+        category_id: args[:category_id],
+        author_name: args[:author_name],
+        email: args[:email],
+        title: args[:title],
+        body: args[:body]
+      )
       if post.save
         { result: true }
       else

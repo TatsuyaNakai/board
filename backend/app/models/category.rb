@@ -33,8 +33,8 @@ class Category < ApplicationRecord
 
   # バリデーション
   validates :name,                  presence: true,
-                                    length: { maximum: 255, allow_blank: true }
-                                    # uniqueness: true,
+                                    length: { maximum: 255 },
+                                    allow_blank: true
 
 
   # クラス変数
