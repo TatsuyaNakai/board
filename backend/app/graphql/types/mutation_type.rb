@@ -1,10 +1,12 @@
 module Types
   class MutationType < Types::BaseObject
-    # TODO: remove me
-    field :test_field, String, null: false,
-      description: "An example field added by the generator"
-    def test_field
-      "Hello World"
-    end
+    # カテゴリ
+    field :create_category, mutation: Mutations::CreateCategory
+    field :update_category, mutation: Mutations::UpdateCategory
+    field :delete_category, mutation: Mutations::DeleteCategory
+    
+    # ポスト
+    field :create_post, mutation: Mutations::CreatePost
+    field :update_post, mutation: Mutations::UpdatePost
   end
 end
