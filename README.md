@@ -27,7 +27,7 @@
   
 * dockerコマンド
 
-  > DBのリセット: `docker-compose rails db:reset`
+  > DBのリセット: `docker-compose rails db:migrate:reset`
 
   > dockerを再度立ち上げる: `docker-compose up`
 
