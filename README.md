@@ -26,3 +26,11 @@
   
   
 * dockerコマンド
+
+  > DBのリセット: `docker-compose rails db:reset`
+
+  > dockerを再度立ち上げる: `docker-compose up`
+
+  > dockerを落とす: `docker-compose down`
+
+以上
