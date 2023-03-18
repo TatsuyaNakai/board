@@ -5,9 +5,9 @@ class GraphqlController < ApplicationController
   # protect_from_forgery with: :null_session
 
   # フック
-  # skip_before_action :verify_authenticity_token
+  before_action :authenticate_admin_from_token!
 
-
+  # メソッド
   def execute
     variables = prepare_variables(params[:variables])
     query = params[:query]
@@ -23,6 +23,19 @@ class GraphqlController < ApplicationController
   end
 
   private
+
+  def authenticate_admin_from_token!
+    authenticate_with_http_token do |token, _o|
+      admin = Admin.find_by(access_token: token)
+      if admin && Devise.secure_compare(admin.access_token, token)
+        sign_in(admin)
+      elsif current_admin && !admin
+        # access_tokenを適当な値に変更、削除するとログアウトする
+        sign_out(admin)
+      end
+      admin.present?
+    end
+  end
 
   # Handle variables in form data, JSON body, or a blank value
   def prepare_variables(variables_param)

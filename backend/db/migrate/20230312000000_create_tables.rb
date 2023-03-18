@@ -2,7 +2,7 @@ class CreateTables < ActiveRecord::Migration[4.2]
   def up
     # 管理者
     create_table :admins do |t|
-      t.string      :name,           null: false
+      t.string      :access_token,   null: false, unique: true
       t.timestamps
     end
 

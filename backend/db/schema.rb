@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_03_12_091049) do
   create_table "admins", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "access_token", null: false
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.string "email", default: "", null: false

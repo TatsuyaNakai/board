@@ -11,10 +11,17 @@ module Types
 
     # カテゴリごとの投稿一覧
     field :category_posts, [Types::PostType], null: true do
-      argument :category_id, String, required: true
+      argument :category_id, ID, required: true
     end
     def category_posts(category_id:)
       Post.where(category_id: category_id).order(:created_at)
+    end
+
+    field :admin, Types::AdminType, null: true do
+      argument :id, ID, required: true
+    end
+    def admin(id:)
+      Admin.find(id)
     end
 
     # 管理者ログイン

@@ -1,6 +1,6 @@
 module Queries
   # class CurrentAdmin < AuthenticateAdmin
-  class CurrentAdmin < GraphQL::Schema::Resolver
+  class CurrentAdmin < AuthenticateAdmin
     type Types::AdminType, null: true
 
     # resolver
