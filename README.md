@@ -23,5 +23,9 @@
 * GraphQL
 
   > https://developer.kaizenplatform.com/entry/tokuda/2021-12-06
-  
+
+
+* マイグレーションのリセット
+
+  > `docker-compose exec api bundle exec rails db:migrate:reset`
   

@@ -2,21 +2,20 @@
 #
 # Table name: posts
 #
-#  id           :integer          not null, primary key
-#  author_name  :string(255)
-#  body         :string(255)      not null
-#  email        :string(255)
-#  session_code :string(255)      not null
-#  status       :string(255)      default("draft"), not null
-#  title        :string(255)
-#  created_at   :datetime
-#  updated_at   :datetime
-#  category_id  :integer          not null
+#  id          :integer          not null, primary key
+#  category_id :integer          not null
+#  author_name :string(255)
+#  body        :string(255)      not null
+#  email       :string(255)
+#  status      :string(255)      default("public"), not null
+#  title       :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
 #
 class Post < ApplicationRecord
   # モジュール
   extend Enumerize
-  enumerize :status, in: %i(draft public private), predicates: { prefix: true }
+  enumerize :status, in: %i(public private), predicates: { prefix: true }
 
 
   # 定数
@@ -40,10 +39,7 @@ class Post < ApplicationRecord
 
 
   # バリデーション
-  validates :session_code,          presence: true
-                                    # length: { maximum: 255, allow_blank: true },
-                                    # uniqueness: true,
-  validates :status,                presence: true
+  # validates :status,                presence: true
                                     # length: { maximum: 255, allow_blank: true },
                                     # uniqueness: true,
   validates :author_name,           # presence: true,
