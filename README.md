@@ -29,3 +29,8 @@
 
   > `docker-compose exec api bundle exec rails db:migrate:reset`
   
+* binding.pryのやり方
+
+  > 止めたいところに`binding.pry`を指すのは今までと同じ、ターミナルで下記を実行
+  
+  > `docker-compose up -d`, `docker attach [コンテナ名]` コンテナ名を調べる場合は、`docker ps`で出力される
