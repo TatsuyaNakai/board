@@ -38,6 +38,9 @@ services:
     volumes:
       - ./frontend:/usr/src/app
     command: sh -c "cd app && yarn && yarn start"
+    environment:
+      # Fixes bug where websocket connection is fixed to default port 3000
+      - WDS_SOCKET_PORT=0
     ports:
       - "4000:3000"
 

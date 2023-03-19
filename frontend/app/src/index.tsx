@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
 
@@ -16,8 +17,12 @@ const client = new ApolloClient({
 
 root.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
+    <BrowserRouter>
+      <ApolloProvider client={client}>
+        <Routes>
+          <Route path="*" element={<App />}/>
+        </Routes>
+      </ApolloProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
