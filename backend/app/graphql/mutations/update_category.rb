@@ -19,6 +19,7 @@ module Mutations
         category_errors = errors.details.keys.map do |attribute|
           { attribute: attribute.to_s.camelize(:lower), messages: errors.full_messages_for(attribute) }
         end
+        { errors: category_errors, full_messages: errors.full_messages }
       end
     end
   end
