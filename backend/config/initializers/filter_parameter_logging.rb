@@ -8,8 +8,8 @@
 # ]
 graphql_filter = lambda do |k, v|
   return unless k.to_sym == :query
-  reg = /(password[a-zA-Z_]*:) \\"([^\\"]*)\\"/
-  v.replace(v.gsub(reg) { "#{Regexp.last_match(1)} \"[FILTERED]\" " })
+  reg = /(password[a-zA-Z_]*:) \"([^\"]*)\"/
+  v.replace v.gsub(reg) { Regexp.last_match(1) + "\"[FILTERED]\"" }
 end
 
 Rails.application.config.filter_parameters += [:password, graphql_filter]
