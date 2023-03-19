@@ -1,5 +1,4 @@
 module Queries
-  # class CurrentAdmin < AuthenticateAdmin
   class CurrentAdmin < AuthenticateAdmin
     type Types::AdminType, null: true
 

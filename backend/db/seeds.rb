@@ -6,9 +6,10 @@ ActiveRecord::Base.transaction do
         author_name: "作者#{post_cnt}",
         status: :public,
         body: "本文#{post_cnt}",
-        email: '15g079nt@gmail.com',
+        email: '',
         title: "タイトルが入ります#{post_cnt}"
       })
     end
   end
+  Admin.create!(email: '15g079nt@gmail.com', password: 'password')
 end
