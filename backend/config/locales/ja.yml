@@ -1,4 +1,28 @@
 ja:
+  activerecord:
+    attributes:
+      admin:
+        id: 'ID'
+        email: 'メールアドレス'
+        password: 'パスワード'
+        created_at: '作成日時'
+        updated_at: '更新日時'
+      category:
+        id: 'ID'
+        name: 'カテゴリ名'
+        created_at: '作成日時'
+        updated_at: '更新日時'
+      post:
+        id: 'ID'
+        category: 'カテゴリ'
+        category_id: 'カテゴリID'
+        author_name: '投稿者名'
+        body: '本文'
+        email: 'メールアドレス'
+        status: 'ステータス'
+        title: 'タイトル'
+        created_at: '作成日時'
+        updated_at: '更新日時'
   devise:
     confirmations:
       confirmed: 'アカウントを本登録しました。'
@@ -53,6 +77,7 @@ ja:
       unlocked: 'アカウントを凍結解除しました。ログインしています。'
   errors:
     messages:
+      record_invalid: 'は不正です'
       already_confirmed: "は既に登録済みですのでログインしてください"
       confirmation_period_expired: "の確認期限が切れました。%{period}以内に確認する必要があります。 新しくリクエストしてください"
       expired: "の期限が切れましたので、新しくリクエストしてください"

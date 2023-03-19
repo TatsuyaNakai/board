@@ -1,7 +1,15 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+ActiveRecord::Base.transaction do
+  10.times do |category_cnt|
+    c = Category.create!(name: "サンプル_#{category_cnt}")
+    10.times do |post_cnt|
+      c.posts.create!({
+        author_name: "作者#{post_cnt}",
+        status: :public,
+        body: "本文#{post_cnt}",
+        email: '',
+        title: "タイトルが入ります#{post_cnt}"
+      })
+    end
+  end
+  Admin.create!(email: '15g079nt@gmail.com', password: 'password')
+end

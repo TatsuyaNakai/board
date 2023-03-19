@@ -3,11 +3,9 @@
 # Table name: admins
 #
 #  id                     :integer          not null, primary key
+#  access_token           :string(255)      not null
 #  email                  :string(255)      default(""), not null
 #  encrypted_password     :string(255)      default(""), not null
-#  first_name             :string(255)      not null
-#  last_name              :string(255)      not null
-#  note                   :text(65535)
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string(255)
@@ -30,7 +28,7 @@ class Admin < ApplicationRecord
 
 
   # アクセサ
-  attr_accessible :email, :encrypted_password, :first_name, :last_name, :note, :remember_created_at,
+  attr_accessible :email, :password, :encrypted_password, :access_token, :remember_created_at,
                   :reset_password_sent_at, :reset_password_token
 
 
@@ -44,23 +42,14 @@ class Admin < ApplicationRecord
 
 
   # フック
+  before_validation :set_access_token
 
 
   # バリデーション
   validates :email,                 presence: true,
-                                    length: { maximum: 255, allow_blank: true },
                                     format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :encrypted_password,    presence: true,
-                                    length: { maximum: 255, allow_blank: true }
-                                    # uniqueness: true,
-  validates :last_name,             presence: true,
-                                    length: { maximum: 255, allow_blank: true }
-                                    # uniqueness: true,
-  validates :first_name,            presence: true,
-                                    length: { maximum: 255, allow_blank: true }
-                                    # uniqueness: true,
-  validates :note,                  # presence: true,
-                                    length: { maximum: 1024, allow_blank: true }
+  # validates :encrypted_password,    presence: true,
+                                    # length: { maximum: 255 }
                                     # uniqueness: true,
 
 
@@ -74,6 +63,9 @@ class Admin < ApplicationRecord
 
 
   # メソッド
+  def set_access_token
+    self.access_token = Devise.friendly_token
+  end
 
 
   # メソッド(Private)
