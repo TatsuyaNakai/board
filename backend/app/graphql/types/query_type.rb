@@ -10,10 +10,10 @@ module Types
     end
 
     # カテゴリごとの投稿一覧
-    field :category_posts, [Types::PostType], null: true do
+    field :posts, [Types::PostType], null: true do
       argument :category_id, ID, required: true
     end
-    def category_posts(category_id:)
+    def posts(category_id:)
       Post.where(category_id: category_id).order(:created_at)
     end
 
