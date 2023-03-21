@@ -1,5 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
-import { CreateCategoryMutation } from './__generated__/CreateCategoryMutation'
+import { CreateCategoryMutation } from '../gql/graphql';
 
 const CREATE_CATEGORY_MUTATION = gql`
   mutation CreateCategoryMutation($input: CreateCategoryInput!) {

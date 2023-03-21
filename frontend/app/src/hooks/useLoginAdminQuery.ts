@@ -1,5 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
-import { LoginAdminQuery } from './__generated__/LoginAdminQuery'
+import { LoginAdminQuery } from '../gql/graphql';
 
 const LOGIN_ADMIN_QUERY = gql`
   query LoginAdminQuery {

@@ -1,5 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
-import { DeleteCategoryMutation } from './__generated__/DeleteCategoryMutation'
+import { DeleteCategoryMutation } from '../gql/graphql';
 
 const DELETE_CATEGORY_MUTATION = gql`
   mutation DeleteCategoryMutation($input: DeleteCategoryInput!) {

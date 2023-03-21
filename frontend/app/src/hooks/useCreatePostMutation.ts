@@ -1,5 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
-import { CreatePostMutation } from './__generated__/CreatePostMutation'
+import { CreatePostMutation } from '../gql/graphql';
 
 const CREATE_POST_MUTATION = gql`
   mutation CreatePostMutation($input: CreatePostInput!) {

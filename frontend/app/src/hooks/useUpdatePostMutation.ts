@@ -1,5 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
-import { UpdatePostMutation } from './__generated__/UpdatePostMutation'
+import { UpdatePostMutation } from '../gql/graphql'
 
 const UPDATE_POST_MUTATION = gql`
   mutation UpdatePostMutation($input: UpdatePostInput!) {
