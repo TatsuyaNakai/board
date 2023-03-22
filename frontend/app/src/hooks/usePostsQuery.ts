@@ -2,8 +2,8 @@ import { useQuery, gql } from '@apollo/client';
 import { PostsQuery } from '../gql/graphql';
 
 const POSTS_QUERY = gql`
-  query PostsQuery($categoryId: ID!) {
-    categoryPosts(categoryId: $categoryId) {
+  query PostsQuery($id: ID!) {
+    categoryPosts(categoryId: $id) {
       id
       status
       authorName
@@ -14,7 +14,7 @@ const POSTS_QUERY = gql`
   }
 `;
 
-export const usePostsQuery = () => {
-  const { data, loading, error } = useQuery<PostsQuery>(POSTS_QUERY);
+export const usePostsQuery = (id: any) => {
+  const { data, loading, error } = useQuery<PostsQuery>(POSTS_QUERY, { variables: { id } });
   return { data, loading, error };
 }

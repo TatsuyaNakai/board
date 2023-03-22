@@ -3,31 +3,27 @@ import { Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 
 import { useCategoriesQuery } from './hooks/useCategoriesQuery';
-import Post from './Post';
+import Categories from './Categories';
+import Category from './Category';
+import NoRouteMatch from './NoRouteMatch';
 
 function App() {
   const { data, loading, error } = useCategoriesQuery();
 
-  if(loading) return <p>Loading...</p>;
-  if(error) return <p>Error...</p>;
-  console.log(data)
+  if(loading) return <p>Loading...</p>
+  if(error) return <p>Error...</p>
 
   return (
     <>
-      <ul>
+      <Routes>
+        <Route index element={<Categories categories={data!.categories} />} />
         {data!.categories!.map(
-          (category, index) => (
-                <li key={index}>
-                  <Link to={`/posts/${category.id}`}>{category.name}</Link>
-                </li>
-                )
+            (category, _) => (
+              <Route path={`/categories/${category.id}`} element={<Category id={category.id} categoryName={category.name} postsCnt={category.postsCnt} />} />
+            )
           )
         }
-      </ul>
-      <Routes>
-        <Route path="/posts">
-          <Route path=":postId" element={<Post />}/>
-        </Route>
+        <Route path="*" element={<NoRouteMatch />}/>
       </Routes>
     </>
   )
