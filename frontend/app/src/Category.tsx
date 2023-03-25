@@ -60,7 +60,7 @@ export default function Category(props: Props) {
 
   const callDeleteCategory = (id: string) => {
     try {
-      deleteCategory({ variables: { id } })
+      deleteCategory({ variables: { input: { id } } })
     }
     catch(error){
       // alert(`システムエラーが発生しました。\n${error}`)
