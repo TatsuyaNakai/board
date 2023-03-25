@@ -28,13 +28,15 @@
 * マイグレーションのリセット
 
   > `docker-compose exec api bundle exec rails db:migrate:reset`
-  
+
+
 * binding.pryのやり方
 
   > 止めたいところに`binding.pry`を指すのは今までと同じ、ターミナルで下記を実行
   
   > `docker-compose up -d`, `docker attach [コンテナ名]` コンテナ名を調べる場合は、`docker ps`で出力される
-  
+
+
 * dockerコマンド
 
   > DBのリセット: `docker-compose rails db:migrate:reset`
@@ -42,5 +44,10 @@
   > dockerを再度立ち上げる: `docker-compose up`
 
   > dockerを落とす: `docker-compose down`
+
+
+* graphql-codegen
+
+  > 概要について https://zenn.dev/nbstsh/scraps/f01024249984de
 
 以上

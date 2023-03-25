@@ -16,13 +16,13 @@ const documents = {
     "\n  query CategoriesQuery {\n    categories {\n      id\n      name\n      postsCnt\n    }\n  }\n": types.CategoriesQueryDocument,
     "\n  mutation CreateAdminMutation($input: CreateAdminInput!) {\n    createAdmin(input: $input) {\n      admin {\n        id\n        email\n        accessToken\n      }\n      errors {\n        attribute\n        messages\n      }\n      fullMessages\n    }\n  }\n": types.CreateAdminMutationDocument,
     "\n  mutation CreateCategoryMutation($input: CreateCategoryInput!) {\n    createCategory(input: $input) {\n      result\n      errors {\n        attribute\n        messages\n      }\n      fullMessages\n    }\n  }\n": types.CreateCategoryMutationDocument,
-    "\n  mutation CreatePostMutation($input: CreatePostInput!) {\n    createPost(input: $input) {\n      result\n      errors {\n        attribute\n        messages\n      }\n      fullMessages\n    }\n  }\n": types.CreatePostMutationDocument,
+    "\n  mutation CreatePostMutation($input: CreatePostInput!) {\n    createPost(input: $input) {\n      result\n      categoryId\n      errors {\n        attribute\n        messages\n      }\n      fullMessages\n    }\n  }\n": types.CreatePostMutationDocument,
     "\n  query CurrentAdminQuery {\n    currentAdmin {\n      id\n      accessToken\n    }\n  }\n": types.CurrentAdminQueryDocument,
     "\n  mutation DeleteCategoryMutation($input: DeleteCategoryInput!) {\n    deleteCategory(input: $input) {\n      result\n    }\n  }\n": types.DeleteCategoryMutationDocument,
     "\n  query LoginAdminQuery {\n    loginAdmin {\n      id\n      accessToken\n    }\n  }\n": types.LoginAdminQueryDocument,
-    "\n  query PostsQuery($categoryId: ID!) {\n    categoryPosts(categoryId: $categoryId) {\n      id\n      status\n      authorName\n      email\n      title\n      body\n    }\n  }\n": types.PostsQueryDocument,
+    "\n  query PostsQuery($id: ID!) {\n    categoryPosts(categoryId: $id) {\n      id\n      status\n      authorName\n      email\n      title\n      body\n    }\n  }\n": types.PostsQueryDocument,
     "\n  mutation UpdateCategoryMutation($input: UpdateCategoryInput!) {\n    updateCategory(input: $input) {\n      result\n      errors {\n        attribute\n        messages\n      }\n      fullMessages\n    }\n  }\n": types.UpdateCategoryMutationDocument,
-    "\n  mutation UpdatePostMutation($input: UpdatePostInput!) {\n    updatePost(input: $input) {\n      result\n    }\n  }\n": types.UpdatePostMutationDocument,
+    "\n  mutation UpdatePostMutation($input: UpdatePostInput!) {\n    updatePost(input: $input) {\n      result\n      categoryId\n    }\n  }\n": types.UpdatePostMutationDocument,
 };
 
 /**
@@ -54,7 +54,7 @@ export function graphql(source: "\n  mutation CreateCategoryMutation($input: Cre
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  mutation CreatePostMutation($input: CreatePostInput!) {\n    createPost(input: $input) {\n      result\n      errors {\n        attribute\n        messages\n      }\n      fullMessages\n    }\n  }\n"): (typeof documents)["\n  mutation CreatePostMutation($input: CreatePostInput!) {\n    createPost(input: $input) {\n      result\n      errors {\n        attribute\n        messages\n      }\n      fullMessages\n    }\n  }\n"];
+export function graphql(source: "\n  mutation CreatePostMutation($input: CreatePostInput!) {\n    createPost(input: $input) {\n      result\n      categoryId\n      errors {\n        attribute\n        messages\n      }\n      fullMessages\n    }\n  }\n"): (typeof documents)["\n  mutation CreatePostMutation($input: CreatePostInput!) {\n    createPost(input: $input) {\n      result\n      categoryId\n      errors {\n        attribute\n        messages\n      }\n      fullMessages\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -70,7 +70,7 @@ export function graphql(source: "\n  query LoginAdminQuery {\n    loginAdmin {\n
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query PostsQuery($categoryId: ID!) {\n    categoryPosts(categoryId: $categoryId) {\n      id\n      status\n      authorName\n      email\n      title\n      body\n    }\n  }\n"): (typeof documents)["\n  query PostsQuery($categoryId: ID!) {\n    categoryPosts(categoryId: $categoryId) {\n      id\n      status\n      authorName\n      email\n      title\n      body\n    }\n  }\n"];
+export function graphql(source: "\n  query PostsQuery($id: ID!) {\n    categoryPosts(categoryId: $id) {\n      id\n      status\n      authorName\n      email\n      title\n      body\n    }\n  }\n"): (typeof documents)["\n  query PostsQuery($id: ID!) {\n    categoryPosts(categoryId: $id) {\n      id\n      status\n      authorName\n      email\n      title\n      body\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -78,7 +78,7 @@ export function graphql(source: "\n  mutation UpdateCategoryMutation($input: Upd
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  mutation UpdatePostMutation($input: UpdatePostInput!) {\n    updatePost(input: $input) {\n      result\n    }\n  }\n"): (typeof documents)["\n  mutation UpdatePostMutation($input: UpdatePostInput!) {\n    updatePost(input: $input) {\n      result\n    }\n  }\n"];
+export function graphql(source: "\n  mutation UpdatePostMutation($input: UpdatePostInput!) {\n    updatePost(input: $input) {\n      result\n      categoryId\n    }\n  }\n"): (typeof documents)["\n  mutation UpdatePostMutation($input: UpdatePostInput!) {\n    updatePost(input: $input) {\n      result\n      categoryId\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

@@ -1,5 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
-import { CreateCategoryMutation } from '../gql/graphql';
+import { CreateCategoryMutationMutation as CreateCategoryMutation } from '../gql/graphql';
 
 const CREATE_CATEGORY_MUTATION = gql`
   mutation CreateCategoryMutation($input: CreateCategoryInput!) {
@@ -15,7 +15,9 @@ const CREATE_CATEGORY_MUTATION = gql`
 `;
 
 export const useCreateCategoryMutation = () => {
-  const [createCategory, { loading, error }] = useMutation<CreateCategoryMutation>(CREATE_CATEGORY_MUTATION);
+  const [createCategory, { loading, error }] = useMutation<CreateCategoryMutation>(CREATE_CATEGORY_MUTATION, {
+    refetchQueries: ['CategoriesQuery'],
+  });
 
   return { createCategory, loading, error };
 };

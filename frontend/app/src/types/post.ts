@@ -1,5 +1,5 @@
 export type Post = {
-  id: string;
+  id?: string;
   status:
     | 'private'
     | 'public';
@@ -8,3 +8,5 @@ export type Post = {
   title: string | null;
   body: string;
 }
+
+export type PostAttributes = keyof Omit<Post, 'id' | 'status' >
