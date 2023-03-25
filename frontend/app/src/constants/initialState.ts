@@ -1,13 +1,8 @@
-import type { Category } from "../types/category"
-import type { Post } from "../types/post"
-
-export const initialCategory: Category = {
-  id: '',
+export const initialCategory = {
   name: '',
-  postsCnt: 0,
 }
 
-export const initialPost: Post = {
+export const initialPost = {
   id: null,
   status:'public',
   authorName: '',

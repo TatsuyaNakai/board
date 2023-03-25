@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function SubmitButton({ label }) {
+export default function SubmitButton({ label, disabled=false }) {
   return (
-    <button type="submit">{label}</button>
+    <button type="submit" disabled={disabled} >{label}</button>
   )
 }

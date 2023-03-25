@@ -1,29 +1,28 @@
 module Queries
   class LoginAdmin < GraphQL::Schema::Resolver
-    type Types::AdminType, null: true
+    type Types::LoginAdminType, null: false
 
     # argument
-    argument :email,          String, required: false
-    argument :password,       String, required: false
+    argument :email,          String, required: true
+    argument :password,       String, required: true
 
     API_MESSAGE = 'パスワードが間違っています、または、登録されていないEメールです。'
 
     # resolver
     def resolve(email:, password:)
-      return create_errors('email') if args[:email].blank? || args[:password].blank?
+      return create_errors('email') if email.blank? || password.blank?
 
-      admin = Admin.find_by(email: args[:email])
-      return create_errors('password') if admin.blank? || !admin.valid_password?(args[:password])
+      admin = Admin.find_by(email: email)
+      return create_errors('password') if admin.blank? || !admin.valid_password?(password)
 
-      # access_tokenを返す必要がある
-      { admin: admin }
+      { admin: admin, result: true }
     end
 
     private
 
     def create_errors(attribute)
       admin_errors = [{ attribute: attribute, messages: [API_MESSAGE] }]
-      { errors: admin_errors, full_messages: API_MESSAGE }
+      { result: false, errors: admin_errors, full_messages: API_MESSAGE }
     end
   end
 end

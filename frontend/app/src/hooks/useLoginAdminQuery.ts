@@ -1,18 +1,24 @@
-import { useQuery, gql } from '@apollo/client';
+import { useLazyQuery, gql } from '@apollo/client';
 import { LoginAdminQueryQuery as LoginAdminQuery } from '../gql/graphql';
 
 const LOGIN_ADMIN_QUERY = gql`
-  query LoginAdminQuery {
-    loginAdmin {
-      id
-      accessToken
+  query LoginAdminQuery($email: String!, $password: String!) {
+    loginAdmin(email: $email, password: $password) {
+      admin {
+        id
+        accessToken
+      }
+      result
+      errors {
+        attribute
+        messages
+      }
+      fullMessages
     }
   }
 `;
 
-export const useLoginAdminQuery = (email, password) => {
-  const { data, loading, error } = useQuery<LoginAdminQuery>(LOGIN_ADMIN_QUERY, {
-    variables: { email: email, password: password }
-  });
-  return { data, loading, error };
+export const useLoginAdminQuery = () => {
+  const [loginAdmin, { data, loading, error }] = useLazyQuery<LoginAdminQuery>(LOGIN_ADMIN_QUERY);
+  return { loginAdmin, data, loading, error };
 }

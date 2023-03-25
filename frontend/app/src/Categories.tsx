@@ -60,7 +60,7 @@ export default function Categories({ categories }: {categories: CategoryType[]})
       <FullMessages fullMessages={fullMessages}/>
       { categories!.map((category, index: number) => (<Category key={index} category={category}/>)) }
       <form onSubmit={handleSubmit(onSubmit)}>
-        <TextField id='title' label='title' register={register('name')} errorText={errors.name?.message} />
+        <TextField id='name' label='name' register={register('name')} errorText={errors.name?.message} />
         <SubmitButton label='カテゴリ作成'/>
       </form>
       <Link to='/login'>管理者ログイン</Link>
