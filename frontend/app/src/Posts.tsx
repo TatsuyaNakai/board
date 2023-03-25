@@ -1,6 +1,3 @@
-// Postsというファイル名に変更する
-// Postそれぞれに対してPostというファイルを作成する
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -42,7 +39,6 @@ export default function Posts({ id, categoryName, postsCnt }: {id: any, category
     try {
       // 投稿作成
       const res = await createPost({ variables: { input: { ...input, categoryId: id } } });
-      console.log(res);
       const { errors, fullMessages } = res.data.createPost
       if (errors && errors.length !== 0) {
         setValidationErrors(errors, fullMessages);

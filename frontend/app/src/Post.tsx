@@ -1,22 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { useUpdatePostMutation } from './hooks/useUpdatePostMutation';
 import { PostStatus } from './gql/graphql';
+import { AdminContext } from './utils/AdminProvider';
 
 type Props = {
   post: {
-    __typename?: "Post",
-    id: string,
-    status: PostStatus,
-    authorName?: string,
-    email?: string,
-    title?: string,
-    body: string,
+    __typename?: "Post";
+    id: string;
+    status: PostStatus;
+    authorName?: string;
+    email?: string;
+    title?: string;
+    body: string;
   }
 }
 
 
 export default function Post(props: Props) {
+  const currentAdmin = useContext(AdminContext);
   const { post: { id, authorName, email, title, body, status } } = props;
   const { updatePost } = useUpdatePostMutation();
 
@@ -36,11 +38,7 @@ export default function Post(props: Props) {
       <div>{email}</div>
       <div>{title}</div>
       <div>{body}</div>
-      {
-        status === 'public' ?
-          <button onClick={()=> updatePostStatus(id, 'private')}>非表示にする</button> :
-          <button onClick={()=> updatePostStatus(id, 'public')}>表示にする</button>
-      }
+      { currentAdmin && <button onClick={()=> updatePostStatus(id, status === 'public' ? 'private': 'public')}>非表示にする</button> }
   </>
   )
 }

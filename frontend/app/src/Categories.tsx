@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 import { useCreateCategoryMutation } from './hooks/useCreateCategoryMutation';
 import { CategoryAttributes } from './types/category'
 import { initialCategory } from './constants/initialState';
+import { AdminContext } from './utils/AdminProvider';
 import Category from './Category';
 import TextField from './uikit/textField';
 import SubmitButton from './uikit/SubmitButton';
@@ -22,6 +23,7 @@ type CategoryType = {
 }
 
 export default function Categories({ categories }: {categories: CategoryType[]}) {
+  const currentAdmin = useContext(AdminContext);
   const [fullMessages, setFullMessages] = useState([]);
   const { createCategory } = useCreateCategoryMutation();
   const { formState: { errors }, register, handleSubmit, reset, setError, clearErrors } = useForm<CategoryInputs>({ defaultValues: initialCategory });
@@ -55,6 +57,11 @@ export default function Categories({ categories }: {categories: CategoryType[]})
     }
   }
 
+  const handleLogout = () => {
+    localStorage.setItem('token', '');
+    window.location.href = '/';
+  }
+
   return (
     <>
       <FullMessages fullMessages={fullMessages}/>
@@ -63,7 +70,7 @@ export default function Categories({ categories }: {categories: CategoryType[]})
         <TextField id='name' label='name' register={register('name')} errorText={errors.name?.message} />
         <SubmitButton label='カテゴリ作成'/>
       </form>
-      <Link to='/login'>管理者ログイン</Link>
+      { currentAdmin ? <button onClick={handleLogout}>ログアウト</button> : <Link to='/login'>管理者ログイン</Link> }
     </>
   )
 }

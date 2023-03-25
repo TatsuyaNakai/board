@@ -1,27 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import { useDeleteCategoryMutation } from './hooks/useDeleteCategoryMutation';
 import { useUpdateCategoryMutation } from './hooks/useUpdateCategoryMutation';
 import { CategoryAttributes } from './types/category'
+import { AdminContext } from './utils/AdminProvider';
 import TextField from './uikit/textField';
 import SubmitButton from './uikit/SubmitButton';
 import FullMessages from './FullMessages';
 
 type Props = {
   category: {
-    id: string,
-    name: string
+    id: string;
+    name: string;
   }
 }
 
 type CategoryInputs = {
-  id: string,
-  name: string,
+  id: string;
+  name: string;
 }
 
 export default function Category(props: Props) {
+  const currentAdmin = useContext(AdminContext);
   const { category: { id, name } } = props;
   const [fullMessages, setFullMessages] = useState([]);
   const { deleteCategory } = useDeleteCategoryMutation();
@@ -70,11 +72,16 @@ export default function Category(props: Props) {
     <div>
       <FullMessages fullMessages={fullMessages}/>
       <Link to={`/categories/${id}`}>{name}</Link>
-      <button onClick={() => callDeleteCategory(id)}>削除する</button>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <TextField id='name' label='name' register={register('name')} errorText={errors.name?.message} />
-        <SubmitButton label='編集する'/>
-      </form>
+      {
+        currentAdmin &&
+          <>
+            <button onClick={() => callDeleteCategory(id)}>削除する</button>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <TextField id='name' label='name' register={register('name')} errorText={errors.name?.message} />
+              <SubmitButton label='編集する'/>
+            </form>
+          </>
+      }
     </div>
   )
 }

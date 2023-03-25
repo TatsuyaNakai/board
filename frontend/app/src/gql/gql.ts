@@ -19,7 +19,7 @@ const documents = {
     "\n  mutation CreatePostMutation($input: CreatePostInput!) {\n    createPost(input: $input) {\n      result\n      categoryId\n      errors {\n        attribute\n        messages\n      }\n      fullMessages\n    }\n  }\n": types.CreatePostMutationDocument,
     "\n  query CurrentAdminQuery {\n    currentAdmin {\n      id\n      accessToken\n    }\n  }\n": types.CurrentAdminQueryDocument,
     "\n  mutation DeleteCategoryMutation($input: DeleteCategoryInput!) {\n    deleteCategory(input: $input) {\n      result\n    }\n  }\n": types.DeleteCategoryMutationDocument,
-    "\n  query LoginAdminQuery($email: String!, $password: String!) {\n    loginAdmin(email: $email, password: $password) {\n      admin {\n        id\n        accessToken\n      }\n      result\n      errors {\n        attribute\n        messages\n      }\n      fullMessages\n    }\n  }\n": types.LoginAdminQueryDocument,
+    "\n  query LoginAdminQuery($email: String, $password: String) {\n    loginAdmin(email: $email, password: $password) {\n      admin {\n        id\n        accessToken\n      }\n      result\n      errors {\n        attribute\n        messages\n      }\n      fullMessages\n    }\n  }\n": types.LoginAdminQueryDocument,
     "\n  query PostsQuery($id: ID!) {\n    categoryPosts(categoryId: $id) {\n      id\n      status\n      authorName\n      email\n      title\n      body\n    }\n  }\n": types.PostsQueryDocument,
     "\n  mutation UpdateCategoryMutation($input: UpdateCategoryInput!) {\n    updateCategory(input: $input) {\n      result\n      errors {\n        attribute\n        messages\n      }\n      fullMessages\n    }\n  }\n": types.UpdateCategoryMutationDocument,
     "\n  mutation UpdatePostMutation($input: UpdatePostInput!) {\n    updatePost(input: $input) {\n      result\n      categoryId\n    }\n  }\n": types.UpdatePostMutationDocument,
@@ -66,7 +66,7 @@ export function graphql(source: "\n  mutation DeleteCategoryMutation($input: Del
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query LoginAdminQuery($email: String!, $password: String!) {\n    loginAdmin(email: $email, password: $password) {\n      admin {\n        id\n        accessToken\n      }\n      result\n      errors {\n        attribute\n        messages\n      }\n      fullMessages\n    }\n  }\n"): (typeof documents)["\n  query LoginAdminQuery($email: String!, $password: String!) {\n    loginAdmin(email: $email, password: $password) {\n      admin {\n        id\n        accessToken\n      }\n      result\n      errors {\n        attribute\n        messages\n      }\n      fullMessages\n    }\n  }\n"];
+export function graphql(source: "\n  query LoginAdminQuery($email: String, $password: String) {\n    loginAdmin(email: $email, password: $password) {\n      admin {\n        id\n        accessToken\n      }\n      result\n      errors {\n        attribute\n        messages\n      }\n      fullMessages\n    }\n  }\n"): (typeof documents)["\n  query LoginAdminQuery($email: String, $password: String) {\n    loginAdmin(email: $email, password: $password) {\n      admin {\n        id\n        accessToken\n      }\n      result\n      errors {\n        attribute\n        messages\n      }\n      fullMessages\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

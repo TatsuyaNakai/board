@@ -26,7 +26,6 @@ const authLink = setContext((_, { headers }) => {
     }
   }
 })
-console.log(localStorage.getItem('token'))
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
