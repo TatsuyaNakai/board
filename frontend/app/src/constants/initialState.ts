@@ -3,8 +3,6 @@ export const initialCategory = {
 }
 
 export const initialPost = {
-  id: null,
-  status:'public',
   authorName: '',
   email: '',
   title: '',

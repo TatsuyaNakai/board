@@ -38,7 +38,11 @@ export default function Post(props: Props) {
       <div>{email}</div>
       <div>{title}</div>
       <div>{body}</div>
-      { currentAdmin && <button onClick={()=> updatePostStatus(id, status === 'public' ? 'private': 'public')}>非表示にする</button> }
+      { currentAdmin && 
+        <button onClick={()=> updatePostStatus(id, status === 'public' ? 'private': 'public')}>
+          { status === 'public' ? '非表示にする' : '表示する' }
+        </button>
+      }
   </>
   )
 }
