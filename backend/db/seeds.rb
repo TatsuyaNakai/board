@@ -5,6 +5,7 @@ ActiveRecord::Base.transaction do
       c.posts.create!({
         author_name: "作者#{post_cnt}",
         status: :public,
+        token: 'sample_token',
         body: "本文#{post_cnt}",
         email: '',
         title: "タイトルが入ります#{post_cnt}"

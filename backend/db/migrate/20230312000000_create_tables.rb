@@ -16,6 +16,7 @@ class CreateTables < ActiveRecord::Migration[4.2]
     create_table :posts do |t|
       t.integer    :category_id,     null: false
       t.string     :status,          null: false, default: 'public'
+      t.string     :token,           null: false
       t.string     :author_name
       t.string     :email
       t.string     :title
