@@ -1,5 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
-import { CreateAdminMutation } from '../gql/graphql';
+import { CreateAdminMutationMutation as CreateAdminMutation } from '../gql/graphql';
 
 const CREATE_ADMIN_MUTATION = gql`
   mutation CreateAdminMutation($input: CreateAdminInput!) {

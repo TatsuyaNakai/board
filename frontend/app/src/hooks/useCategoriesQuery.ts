@@ -1,7 +1,7 @@
 import { useQuery, gql } from '@apollo/client';
-import { CategoriesQuery } from '../gql/graphql'
+import { CategoriesQueryQuery as CategoriesQuery } from '../gql/graphql'
 
-const CATEGORIES_QUERY = gql`
+export const CATEGORIES_QUERY = gql`
   query CategoriesQuery {
     categories {
       id

@@ -1,7 +1,7 @@
 import { useQuery, gql } from '@apollo/client';
-import { PostsQuery } from '../gql/graphql';
+import { PostsQueryQuery as PostsQuery } from '../gql/graphql';
 
-const POSTS_QUERY = gql`
+export const POSTS_QUERY = gql`
   query PostsQuery($id: ID!) {
     categoryPosts(categoryId: $id) {
       id

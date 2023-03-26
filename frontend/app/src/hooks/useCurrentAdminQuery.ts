@@ -1,5 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
-import { CurrentAdminQuery } from '../gql/graphql';
+import { CurrentAdminQueryQuery as CurrentAdminQuery } from '../gql/graphql';
 
 const CURRENT_ADMIN_QUERY = gql`
   query CurrentAdminQuery {

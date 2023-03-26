@@ -1,5 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
-import { DeleteCategoryMutation } from '../gql/graphql';
+import { DeleteCategoryMutationMutation as DeleteCategoryMutation } from '../gql/graphql';
 
 const DELETE_CATEGORY_MUTATION = gql`
   mutation DeleteCategoryMutation($input: DeleteCategoryInput!) {
@@ -10,7 +10,9 @@ const DELETE_CATEGORY_MUTATION = gql`
 `;
 
 export const useDeleteCategoryMutation = () => {
-  const [deleteCategory, { loading, error }] = useMutation<DeleteCategoryMutation>(DELETE_CATEGORY_MUTATION);
+  const [deleteCategory, { loading, error }] = useMutation<DeleteCategoryMutation>(DELETE_CATEGORY_MUTATION, {
+    refetchQueries: ['CategoriesQuery'],
+  });
 
   return { deleteCategory, loading, error };
 };
