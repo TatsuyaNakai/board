@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useCookies } from 'react-cookie'
 
 import { useUpdatePostMutation } from './hooks/useUpdatePostMutation';
 import { PostStatus } from './gql/graphql';
@@ -9,6 +10,7 @@ type Props = {
     __typename?: "Post";
     id: string;
     status: PostStatus;
+    token: string;
     authorName?: string;
     email?: string;
     title?: string;
@@ -16,10 +18,10 @@ type Props = {
   }
 }
 
-
 export default function Post(props: Props) {
+  const { post: { id, authorName, email, title, body, status, token } } = props;
   const currentAdmin = useContext(AdminContext);
-  const { post: { id, authorName, email, title, body, status } } = props;
+  const [cookies] = useCookies(['token']);
   const { updatePost } = useUpdatePostMutation();
 
   const updatePostStatus = (id: string, status: 'private' | 'public') => {
@@ -38,6 +40,9 @@ export default function Post(props: Props) {
       <div>{email}</div>
       <div>{title}</div>
       <div>{body}</div>
+      { status === 'public' && cookies.token === token &&
+        <button onClick={()=> updatePostStatus(id, 'private')}>非表示にする</button>
+      }
       { currentAdmin && 
         <button onClick={()=> updatePostStatus(id, status === 'public' ? 'private': 'public')}>
           { status === 'public' ? '非表示にする' : '表示する' }

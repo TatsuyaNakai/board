@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useCookies } from 'react-cookie';
+import { nanoid } from 'nanoid';
 
 import { usePostsQuery } from './hooks/usePostsQuery';
 import { useCreatePostMutation } from './hooks/useCreatePostMutation';
@@ -18,11 +20,21 @@ type FormInputs = {
   body: string;
 }
 
-export default function Posts({ id, categoryName, postsCnt }: {id: any, categoryName: string, postsCnt: number}) {
+type Props = {
+  id: string;
+  categoryName: string;
+}
+
+export default function Posts(props: Props) {
+  const { id, categoryName } = props;
   const [fullMessages, setFullMessages] = useState([]);
   const { data, loading, error } = usePostsQuery(id)
   const { createPost } = useCreatePostMutation();
   const { formState: { errors }, register, handleSubmit, reset, setError, clearErrors } = useForm<FormInputs>({ defaultValues: initialPost });
+  const [cookies, setCookie] = useCookies(['token']);
+
+  // cookie生成
+  if (!cookies.token) setCookie('token', nanoid())
 
   const isErrorPostAttributes = (attribute: string): attribute is PostAttributes => attribute.includes(attribute);
   const setValidationErrors = (errors, errorFullMessages: string[]) => {
@@ -38,7 +50,7 @@ export default function Posts({ id, categoryName, postsCnt }: {id: any, category
   const onSubmit = async (input: FormInputs) => {
     try {
       // 投稿作成
-      const res = await createPost({ variables: { input: { ...input, categoryId: id } } });
+      const res = await createPost({ variables: { input: { ...input, categoryId: id, token: cookies.token } } });
       const { errors, fullMessages } = res.data.createPost
       if (errors && errors.length !== 0) {
         setValidationErrors(errors, fullMessages);

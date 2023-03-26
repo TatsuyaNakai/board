@@ -3,6 +3,7 @@ module Types
     field :id,            ID,                                 null: false
     field :category_id,   ID,                                 null: false
     field :status,        Types::Enums::PostStatus,           null: false
+    field :token,         String,                             null: false
     field :author_name,   String,                             null: true
     field :email,         String,                             null: true
     field :title,         String,                             null: true
