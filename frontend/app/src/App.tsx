@@ -6,7 +6,7 @@ import { useCategoriesQuery } from './hooks/useCategoriesQuery';
 import { useCurrentAdminQuery } from './hooks/useCurrentAdminQuery';
 import { AdminProvider } from './utils/AdminProvider';
 import Categories from './Categories';
-import Category from './Posts';
+import Posts from './Posts';
 import LoginForm from './LoginForm';
 import NoRouteMatch from './NoRouteMatch';
 
@@ -23,7 +23,7 @@ function App() {
         <Route index element={<Categories categories={categoriesData!.categories} />} />
         {categoriesData!.categories!.map(
             (category, _: number) => (
-              <Route path={`/categories/${category.id}`} element={<Category id={category.id} categoryName={category.name} postsCnt={category.postsCnt} />} />
+              <Route path={`/categories/${category.id}`} element={<Posts id={category.id} categoryName={category.name} />} />
             )
           )
         }

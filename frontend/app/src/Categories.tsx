@@ -22,7 +22,12 @@ type CategoryType = {
   postsCnt: number;
 }
 
-export default function Categories({ categories }: {categories: CategoryType[]}) {
+type Props = {
+  categories: CategoryType[]
+}
+
+export default function Categories(props: Props) {
+  const { categories } = props;
   const currentAdmin = useContext(AdminContext);
   const [fullMessages, setFullMessages] = useState([]);
   const { createCategory } = useCreateCategoryMutation();

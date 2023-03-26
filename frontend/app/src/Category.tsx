@@ -74,13 +74,13 @@ export default function Category(props: Props) {
       <Link to={`/categories/${id}`}>{name}</Link>
       {
         currentAdmin &&
-          <>
-            <button onClick={() => callDeleteCategory(id)}>削除する</button>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <TextField id='name' label='name' register={register('name')} errorText={errors.name?.message} />
-              <SubmitButton label='編集する'/>
-            </form>
-          </>
+        <>
+          <button onClick={() => callDeleteCategory(id)}>削除する</button>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <TextField id='name' label='name' register={register('name')} errorText={errors.name?.message} />
+            <SubmitButton label='編集する'/>
+          </form>
+        </>
       }
     </div>
   )

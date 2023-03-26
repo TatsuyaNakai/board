@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_12_091049) do
   create_table "posts", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "category_id", null: false
     t.string "status", default: "public", null: false
+    t.string "token", null: false
     t.string "author_name"
     t.string "email"
     t.string "title"

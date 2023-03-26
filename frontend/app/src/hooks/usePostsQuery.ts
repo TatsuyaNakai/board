@@ -6,6 +6,7 @@ export const POSTS_QUERY = gql`
     categoryPosts(categoryId: $id) {
       id
       status
+      token
       authorName
       email
       title

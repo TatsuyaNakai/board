@@ -8,6 +8,7 @@ module Mutations
 
     # argument
     argument :category_id,  ID,     required: true
+    argument :token,        String, required: true
     argument :author_name,  String, required: false
     argument :email,        String, required: false
     argument :title,        String, required: false

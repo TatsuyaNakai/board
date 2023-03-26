@@ -45,6 +45,8 @@
 
   > dockerを落とす: `docker-compose down`
 
+  > dockerを落とそうにも落ちない時の最終手段: `killall Docker && open /Applications/Docker.app`
+
 
 * graphql-codegen
 
