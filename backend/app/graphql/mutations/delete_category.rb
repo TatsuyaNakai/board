@@ -9,6 +9,8 @@ module Mutations
     # resolver
     def resolve(id:)
       Category.find(id).destroy
+
+      { result: true }
     end
   end
 end
