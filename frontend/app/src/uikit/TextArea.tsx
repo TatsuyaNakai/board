@@ -5,18 +5,17 @@ type Props = {
   klass?: string;
   id: string;
   label: string;
-  type?: string;
   register: UseFormRegisterReturn;
   errorText?: string;
 }
 
-export default function TextField(props: Props) {
-  const { klass, id, label, type, register, errorText } = props;
+export default function TextArea(props: Props) {
+  const { klass, id, label, register, errorText } = props;
 
   return (
-    <div className={klass}>
+    <div className={`form-group ${klass}`}>
       <label htmlFor={id}>{label}</label>
-      <input type={type ? type : 'text'} className="form-control" id={id} {...register} />
+      <textarea className="form-control" id={id} {...register} rows={4}/>
       {errorText && <p className="text-danger">{errorText}</p>}
     </div>
   )

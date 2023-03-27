@@ -7,8 +7,7 @@ import { AdminContext } from './utils/AdminProvider';
 
 type Props = {
   post: {
-    __typename?: "Post";
-    id: string;
+    id?: string;
     status: PostStatus;
     token: string;
     authorName?: string;
@@ -35,19 +34,35 @@ export default function Post(props: Props) {
   };
 
   return (
-    <>
-      <div>{authorName}</div>
-      <div>{email}</div>
-      <div>{title}</div>
-      <div>{body}</div>
-      { status === 'public' && cookies.token === token &&
-        <button onClick={()=> updatePostStatus(id, 'private')}>非表示にする</button>
-      }
-      { currentAdmin && 
-        <button onClick={()=> updatePostStatus(id, status === 'public' ? 'private': 'public')}>
-          { status === 'public' ? '非表示にする' : '表示する' }
-        </button>
-      }
-  </>
+    <li className="list-group-item">
+      <div className="container">
+        <div className="row mb-2">
+          <div className="col">{authorName}</div>
+          <div className="col">{email}</div>
+        </div>
+        <div className="mb-2">{title}</div>
+        <div className="mb-2">{body}</div>
+      </div>
+      <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+        { !currentAdmin && status === 'public' && cookies.token === token &&
+          <button
+            type='button'
+            className='btn btn-primary'
+            onClick={()=> updatePostStatus(id, 'private')}
+          >
+            非表示
+          </button>
+        }
+        { currentAdmin && status === 'private' &&
+          <button
+            type='button'
+            className='btn btn-primary'
+            onClick={()=> updatePostStatus(id, 'public')}
+          >
+             再表示
+          </button>
+        }
+      </div>
+  </li>
   )
 }
