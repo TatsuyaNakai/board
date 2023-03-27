@@ -1,7 +1,9 @@
 import React from 'react'
 
+import Button from 'react-bootstrap/Button';
+
 export default function SubmitButton({ label, disabled=false }) {
   return (
-    <button type="submit" disabled={disabled} >{label}</button>
+    <Button type="submit" variant="primary" disabled={disabled}>{label}</Button>
   )
 }

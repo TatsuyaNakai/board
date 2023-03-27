@@ -1,6 +1,5 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import './App.css';
 
 import { useCategoriesQuery } from './hooks/useCategoriesQuery';
 import { useCurrentAdminQuery } from './hooks/useCurrentAdminQuery';

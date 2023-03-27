@@ -1,12 +1,12 @@
+import { PostStatus } from '../gql/graphql';
+
 export type Post = {
   id?: string;
-  status:
-    | 'private'
-    | 'public';
+  status: PostStatus;
   token: string;
-  authorName: string | null;
-  email: string | null;
-  title: string | null;
+  authorName?: string;
+  email?: string;
+  title?: string;
   body: string;
 }
 

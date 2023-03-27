@@ -6,10 +6,10 @@ import { useCreateCategoryMutation } from './hooks/useCreateCategoryMutation';
 import { CategoryAttributes } from './types/category'
 import { initialCategory } from './constants/initialState';
 import { AdminContext } from './utils/AdminProvider';
+
 import Category from './Category';
-import TextField from './uikit/textField';
+import TextField from './uikit/TextField';
 import SubmitButton from './uikit/SubmitButton';
-import FullMessages from './FullMessages';
 
 type CategoryInputs = {
   name: string
@@ -29,15 +29,13 @@ type Props = {
 export default function Categories(props: Props) {
   const { categories } = props;
   const currentAdmin = useContext(AdminContext);
-  const [fullMessages, setFullMessages] = useState([]);
   const { createCategory } = useCreateCategoryMutation();
   const { formState: { errors }, register, handleSubmit, reset, setError, clearErrors } = useForm<CategoryInputs>({ defaultValues: initialCategory });
 
   const isErrorCategoryAttributes = (attribute: string): attribute is CategoryAttributes => attribute.includes(attribute);
-  const setValidationErrors = (errors, errorFullMessages: string[]) => {
+  const setValidationErrors = (errors) => {
     clearErrors();
 
-    setFullMessages(errorFullMessages);
     errors.forEach(error => {
       const { attribute } = error;
       if (isErrorCategoryAttributes(attribute)) setError(attribute, { message: error.messages.join(' ') })
@@ -48,9 +46,9 @@ export default function Categories(props: Props) {
     try {
       const res = await createCategory({ variables: { input: input }});
       console.log(res)
-      const { errors, fullMessages } = res.data.createCategory
+      const { errors } = res.data.createCategory
       if (errors && errors.length !== 0) {
-        setValidationErrors(errors, fullMessages);
+        setValidationErrors(errors);
       } else {
         clearErrors();
         reset(initialCategory);
@@ -68,14 +66,21 @@ export default function Categories(props: Props) {
   }
 
   return (
-    <>
-      <FullMessages fullMessages={fullMessages}/>
-      { categories!.map((category, index: number) => (<Category key={index} category={category}/>)) }
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <TextField id='name' label='name' register={register('name')} errorText={errors.name?.message} />
-        <SubmitButton label='カテゴリ作成'/>
-      </form>
-      { currentAdmin ? <button onClick={handleLogout}>ログアウト</button> : <Link to='/login'>管理者ログイン</Link> }
-    </>
+    <div className="container-fluid">
+      <h2 className="text-center my-4">カテゴリ一覧</h2>
+      <ul className="list-group mb-4">
+        { categories!.map((category, index: number) => (<Category key={index} category={category}/>)) }
+      </ul>
+      { 
+        currentAdmin &&
+        <form className='row g-3 mb-4' onSubmit={handleSubmit(onSubmit)}>
+          <TextField klass='col-12' id='name' label='カテゴリ名' register={register('name')} errorText={errors.name?.message} />
+          <SubmitButton label='カテゴリ作成'/>
+        </form>
+      }
+      <div>
+        { currentAdmin ? <button className='btn btn-secondary' onClick={handleLogout}>ログアウト</button> : <Link to='/login' className='btn btn-primary'>管理者ログイン</Link> }
+      </div>
+    </div>
   )
 }
