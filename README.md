@@ -15,11 +15,6 @@
   > `docker-compose down` -> `docker-compose build`
 
 
-* ActiveAdmin
-
-  > https://blog.heroku.com/a-rock-solid-modern-web-stack
-
-
 * GraphQL
 
   > https://developer.kaizenplatform.com/entry/tokuda/2021-12-06
