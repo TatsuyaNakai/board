@@ -47,8 +47,6 @@ export default function Posts(props: Props) {
 
   const isErrorPostAttributes = (attribute: string): attribute is PostAttributes => attribute.includes(attribute);
   const setValidationErrors = (errors) => {
-    clearErrors();
-
     errors.forEach(error => {
       const { attribute } = error;
       if (isErrorPostAttributes(attribute)) setError(attribute, { message: error.messages.join(' ') })
@@ -82,14 +80,18 @@ export default function Posts(props: Props) {
       <Link to='/' >トップへ戻る</Link>
       <h2 className="text-center my-4">{categoryName}</h2>
       <ul className="list-group list-group-flush mb-4">
-        { filterCategoryPosts(data.categoryPosts).map((post, index) => (<Post key={index} post={post} />)) }
+        { 
+          filterCategoryPosts(data.categoryPosts).length === 0 ?
+          <p className="text-center my-4">まだ投稿がありません、投稿してみましょう！</p> :
+          filterCategoryPosts(data.categoryPosts).map((post, index) => (<Post key={index} post={post} />))
+        }
       </ul>
       {
         !currentAdmin &&
-        <form className='row g-3' onSubmit={handleSubmit(onSubmit)}>
+        <form className='row g-3 mb-4' onSubmit={handleSubmit(onSubmit)}>
           <TextField klass='col-md-6' id='authorName' label='名前' register={register('authorName')} errorText={errors.authorName?.message} />
           <TextField klass='col-md-6' id='email' label='メールアドレス' register={register('email')} errorText={errors.email?.message} />
-          <TextField klass='col-12' id='title' label='タイトル' register={register('title')} errorText={errors.title?.message} />
+          <TextField klass='col-12' id='title' label='件名' register={register('title')} errorText={errors.title?.message} />
           <TextArea klass='col-12' id='body' label='本文' register={register('body')} errorText={errors.body?.message} />
           <SubmitButton label='投稿'/>
         </form>

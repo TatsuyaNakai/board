@@ -21,8 +21,10 @@ function App() {
       <Routes>
         <Route index element={<Categories categories={categoriesData!.categories} />} />
         {categoriesData!.categories!.map(
-            (category, _: number) => (
-              <Route path={`/categories/${category.id}`} element={<Posts id={category.id} categoryName={category.name} />} />
+            (category, i: number) => (
+              <React.Fragment key={i}>
+                <Route path={`/categories/${category.id}`} element={<Posts id={category.id} categoryName={category.name}/>} />
+              </React.Fragment>
             )
           )
         }

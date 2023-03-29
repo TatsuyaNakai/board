@@ -28,8 +28,7 @@ export default function Post(props: Props) {
       updatePost({ variables: { input: { id, status } } })
     }
     catch(error) {
-      // alert(`システムエラーが発生しました。\n${error}`)
-      console.log(error)
+      alert(`システムエラーが発生しました。\n${error}`)
     }
   };
 
