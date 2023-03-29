@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ import TextField from './uikit/TextField';
 import SubmitButton from './uikit/SubmitButton';
 
 type CategoryInputs = {
-  name: string
+  name: string;
 }
 
 type CategoryType = {
@@ -34,8 +34,6 @@ export default function Categories(props: Props) {
 
   const isErrorCategoryAttributes = (attribute: string): attribute is CategoryAttributes => attribute.includes(attribute);
   const setValidationErrors = (errors) => {
-    clearErrors();
-
     errors.forEach(error => {
       const { attribute } = error;
       if (isErrorCategoryAttributes(attribute)) setError(attribute, { message: error.messages.join(' ') })
@@ -55,8 +53,7 @@ export default function Categories(props: Props) {
       }
     }
     catch(error) {
-      // alert(`システムエラーが発生しました。\n${error}`)
-      console.log(error)
+      alert(`システムエラーが発生しました。\n${error}`)
     }
   }
 

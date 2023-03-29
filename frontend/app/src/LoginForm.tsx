@@ -9,8 +9,8 @@ import TextField from './uikit/TextField';
 import SubmitButton from './uikit/SubmitButton';
 
 type AdminInputs = {
-  email: string,
-  password: string,
+  email: string;
+  password: string;
 }
 
 export default function LoginForm() {
@@ -41,21 +41,31 @@ export default function LoginForm() {
       }
     }
     catch(error) {
-      // alert(`システムエラーが発生しました。\n${error}`)
-      console.log(error)
+      alert(`システムエラーが発生しました。\n${error}`)
     }
   }
 
 
   return (
-    // ログイン画面があって、VKのログインのUIが出る、
-    // ログインに成功した場合には、ホーム画面に戻るような設計
     <div className="container-fluid">
       <Link to='/' >トップへ戻る</Link>
       <h1 className="text-center">管理者ログイン</h1>
       <form className="form-signin" onSubmit={handleSubmit(onSubmit)}>
-        <TextField klass='mb-3' id='email' label='email' register={register('email')} errorText={errors.email?.message} />
-        <TextField klass='mb-3' id='password' label='password' type='password' register={register('password')} errorText={errors.password?.message} />
+        <TextField
+          klass='mb-3'
+          id='email'
+          label='メールアドレス'
+          register={register('email')}
+          errorText={errors.email?.message}
+        />
+        <TextField
+          klass='mb-3'
+          id='password'
+          label='パスワード'
+          type='password'
+          register={register('password')}
+          errorText={errors.password?.message}
+        />
         <SubmitButton label='ログイン' />
       </form>
     </div>

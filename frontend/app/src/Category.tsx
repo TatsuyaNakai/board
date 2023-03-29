@@ -39,8 +39,6 @@ export default function Category(props: Props) {
 
   const isErrorCategoryAttributes = (attribute: string): attribute is CategoryAttributes => attribute.includes(attribute);
   const setValidationErrors = (errors) => {
-    clearErrors();
-
     errors.forEach(error => {
       const { attribute } = error;
       if (isErrorCategoryAttributes(attribute)) setError(attribute, { message: error.messages.join(' ') })
@@ -59,8 +57,7 @@ export default function Category(props: Props) {
       }
     }
     catch(error) {
-      // alert(`システムエラーが発生しました。\n${error}`)
-      console.log(error)
+      alert(`システムエラーが発生しました。\n${error}`)
     }
   }
 
@@ -70,8 +67,7 @@ export default function Category(props: Props) {
         deleteCategory({ variables: { input: { id } } })
       }
       catch(error){
-        // alert(`システムエラーが発生しました。\n${error}`)
-        console.log(error)
+        alert(`システムエラーが発生しました。\n${error}`)
       }
     }
   };
@@ -79,10 +75,10 @@ export default function Category(props: Props) {
   return (
     <li className="list-group-item d-flex justify-content-between align-items-center">
       <Link to={`/categories/${id}`}>{name}</Link>
-      <Badge pill bg="secondary">{postsCnt}</Badge>
       {
         currentAdmin &&
         <>
+          <Badge pill bg="secondary">{postsCnt}</Badge>
           <Button variant="danger" onClick={() => callDeleteCategory(id)}>削除する</Button>
           <Button variant="primary" onClick={handleShow}>編集する</Button>
           {/* Modal */}

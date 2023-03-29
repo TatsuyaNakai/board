@@ -4,4 +4,9 @@ export type Category = {
   postsCnt: number;
 }
 
+export type CategoryInputs = {
+  id: string;
+  name: string;
+}
+
 export type CategoryAttributes = keyof Omit<Category, 'id' | 'postsCnt' >
