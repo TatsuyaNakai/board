@@ -3,6 +3,7 @@
 # Table name: posts
 #
 #  id          :integer          not null, primary key
+#  category_id :integer          not null
 #  author_name :string(255)
 #  status      :string(255)      default("public"), not null
 #  token       :string(255)      not null
@@ -11,7 +12,6 @@
 #  title       :string(255)
 #  created_at  :datetime
 #  updated_at  :datetime
-#  category_id :integer          not null
 #
 class Post < ApplicationRecord
   # モジュール

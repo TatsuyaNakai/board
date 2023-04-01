@@ -23,6 +23,11 @@ ja:
         title: 'タイトル'
         created_at: '作成日時'
         updated_at: '更新日時'
+  enumerize:
+    post:
+      status:
+        public: '公開'
+        private: '非公開'
   devise:
     confirmations:
       confirmed: 'アカウントを本登録しました。'
@@ -33,7 +38,7 @@ ja:
       inactive: 'アカウントがアクティベートされていません。'
       invalid: 'パスワードが間違っています、または、登録されていないEメールです。'
       locked: 'あなたのアカウントは凍結されています。'
-      last_attempt: "You have one more attempt before your account is locked."
+      last_attempt: 'You have one more attempt before your account is locked.'
       not_found_in_database: 'パスワードが間違っています、または、登録されていないEメールです。'
       timeout: 'セッションがタイムアウトしました。もう一度ログインしてください。'
       unauthenticated: 'ログインしてください。'
@@ -53,9 +58,9 @@ ja:
       success: '%{kind} アカウントによる個人認証に成功しました。'
       failure: '%{kind} アカウントによる個人認証に失敗しました。もう一度お試しください。'
     passwords:
-      no_token: "このページにはアクセスできません。パスワード復元メールのリンクをコピーした場合には、正しい URL かどうかをお確かめください。"
+      no_token: 'このページにはアクセスできません。パスワード復元メールのリンクをコピーした場合には、正しい URL かどうかをお確かめください。'
       send_instructions: 'パスワードのリセット方法を数分以内にメールでご連絡します。'
-      send_paranoid_instructions: "もしあなたのEメールが見つかった場合、パスワード復元用のメールが数分以内に送られます。"
+      send_paranoid_instructions: 'もしあなたのEメールが見つかった場合、パスワード復元用のメールが数分以内に送られます。'
       updated: 'パスワードを変更しました。'
       updated_not_active: 'パスワードが正しく変更されました。'
     registrations:
@@ -70,7 +75,7 @@ ja:
     sessions:
       signed_in: 'ログインしました。'
       signed_out: 'ログアウトしました。'
-      already_signed_out: "正常にログアウトしました。"
+      already_signed_out: '正常にログアウトしました。'
     unlocks:
       send_instructions: 'アカウントの凍結解除方法を数分以内にメールでご連絡します。'
       send_paranoid_instructions: 'アカウントが見つかった場合、アカウントの凍結解除方法を数分以内にメールでご連絡します。'
@@ -78,11 +83,11 @@ ja:
   errors:
     messages:
       record_invalid: 'は不正です'
-      already_confirmed: "は既に登録済みですのでログインしてください"
-      confirmation_period_expired: "の確認期限が切れました。%{period}以内に確認する必要があります。 新しくリクエストしてください"
-      expired: "の期限が切れましたので、新しくリクエストしてください"
-      not_found: "は見つかりませんでした"
-      not_locked: "は凍結されていません"
+      already_confirmed: 'は既に登録済みですのでログインしてください'
+      confirmation_period_expired: 'の確認期限が切れました。%{period}以内に確認する必要があります。 新しくリクエストしてください'
+      expired: 'の期限が切れましたので、新しくリクエストしてください'
+      not_found: 'は見つかりませんでした'
+      not_locked: 'は凍結されていません'
       not_saved:
-        one: "1件のエラーがあります。"
-        other: "%{count}件のエラーがあります。"
+        one: '1件のエラーがあります。'
+        other: '%{count}件のエラーがあります。'
