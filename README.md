@@ -54,4 +54,6 @@
 
   > テスト実行: `docker-compose run api bundle exec rspec`で全ファイルなので、個別ファイルの場合はパスを指定すること
 
+  > GraphQLをRspecで試験 https://www.marsa-blog.com/2020/08/rails-graphql-test.html
+
 以上
