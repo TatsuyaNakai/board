@@ -1,15 +1,15 @@
 export const initialCategory = {
-  name: '',
-}
+	name: "",
+};
 
 export const initialPost = {
-  authorName: '',
-  email: '',
-  title: '',
-  body: '',
-}
+	authorName: "",
+	email: "",
+	title: "",
+	body: "",
+};
 
 export const initialAdmin = {
-  email: '',
-  password: '',
-}
+	email: "",
+	password: "",
+};
