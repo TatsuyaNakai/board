@@ -15,10 +15,10 @@ module Sample
             token: one['トークン'],
             email: one['メールアドレス'],
             title: one['タイトル'],
-            body: one['本文'],
+            body: one['本文']
           )
         end
       end
-    end    
-  end  
+    end
+  end
 end
