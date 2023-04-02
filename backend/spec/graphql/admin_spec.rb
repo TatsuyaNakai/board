@@ -1,6 +1,6 @@
 RSpec.describe 'QueryType#admin' do
   before do
-    query = <<-Graphql
+    query = <<-QUERY
       query admin($id: ID!) {
         admin(id: $id) {
           id
@@ -10,7 +10,7 @@ RSpec.describe 'QueryType#admin' do
           updatedAt
         }
       }
-    Graphql
+    QUERY
     result = MyappSchema.execute(query, variables: { id: 1 })
     @admin = Admin.first
     @admin_result = result['data']['admin']
@@ -19,7 +19,7 @@ RSpec.describe 'QueryType#admin' do
   it 'は、項目名を取得できること' do
     @admin_result.each do |key, value|
       value = value.to_i if key == 'id'
-      value = value.to_datetime if %w(createdAt updatedAt).include?(key)
+      value = value.to_datetime if %w[createdAt updatedAt].include?(key)
       expect(value).to eq @admin[key.underscore]
     end
   end
