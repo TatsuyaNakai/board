@@ -15,7 +15,7 @@
 #
 FactoryBot.define do
   factory :post do
-    association :category, factory: :user
+    association :category, factory: :category
     body                { 'body' }
     token               { 'token' }
   end
