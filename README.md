@@ -47,4 +47,11 @@
 
   > 概要について https://zenn.dev/nbstsh/scraps/f01024249984de
 
+
+* rspec導入
+
+  > ファイルを作成する場合: `docker-compose run api rails g rspec:model [モデル名]`でポートを立てていない状態で実行する
+
+  > テスト実行: `docker-compose run api bundle exec rspec`で全ファイルなので、個別ファイルの場合はパスを指定すること
+
 以上
