@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe 'QueryType#admin' do
   before do
     query = <<-QUERY
@@ -11,8 +13,8 @@ RSpec.describe 'QueryType#admin' do
         }
       }
     QUERY
-    result = MyappSchema.execute(query, variables: { id: 1 })
-    @admin = Admin.first
+    @admin = FactoryBot.create(:admin)
+    result = MyappSchema.execute(query, variables: { id: @admin.id })
     @admin_result = result['data']['admin']
   end
 

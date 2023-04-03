@@ -9,6 +9,6 @@
 #
 FactoryBot.define do
   factory :category do
-    sequence(:name) { |s| "テストカテゴリ_#{s}" }
+    name { 'テストカテゴリ' }
   end
 end

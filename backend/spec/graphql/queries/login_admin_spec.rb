@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe 'QueryType#login_admin' do
   before do
     @query = <<-QUERY
@@ -19,9 +21,9 @@ RSpec.describe 'QueryType#login_admin' do
   end
 
   it 'は、管理者情報を取得できること' do
-    variables = { email: '15g079nt@gmail.com', password: 'password' }
+    admin = FactoryBot.create(:admin)
+    variables = { email: admin.email, password: admin.password }
     result = MyappSchema.execute(@query, variables: variables)
-    admin = Admin.first
     query_result = result['data']['loginAdmin']['result']
     admin_result = result['data']['loginAdmin']['admin']
 

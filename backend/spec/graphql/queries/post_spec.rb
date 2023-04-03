@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe 'QueryType#category_posts' do
   before do
     query = <<-QUERY

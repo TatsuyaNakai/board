@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe 'QueryType#current_admin' do
   before do
     @query = <<-QUERY
@@ -11,7 +13,7 @@ RSpec.describe 'QueryType#current_admin' do
   end
 
   it 'は、ログイン情報を取得できること' do
-    admin = Admin.first
+    admin = FactoryBot.create(:admin)
     result = MyappSchema.execute(@query, context: { current_admin: admin })
     admin_result = result['data']['currentAdmin']
 
