@@ -21,41 +21,29 @@ jobs:
       - name: Build docker
         shell: bash
         run: docker-compose build
-        env:
-          RAILS_ENV: test
 
       - name: Up docker
         shell: bash
         run: docker-compose up -d
-        env:
-          RAILS_ENV: test
 
       - name: Sleep for waiting launch DB
         shell: bash
         run: sleep 1m
-        env:
-          RAILS_ENV: test
 
       - name: Setup DB
         shell: bash
-        run: docker-compose run --rm api rails db:create db:migrate
-        env:
-          RAILS_ENV: test
+        run: |
+          docker-compose run --rm api rails db:create
+          docker-compose run --rm api rails db:migrate
 
       - name: Run RSpec
         shell: bash
         run: docker-compose run --rm api bundle exec rspec
-        env:
-          RAILS_ENV: test
 
       - name: Run Rubocop
         shell: bash
         run: docker-compose run --rm api rubocop
-        env:
-          RAILS_ENV: test
 
       - name: Down docker
         shell: bash
         run: docker-compose down
-        env:
-          RAILS_ENV: test
