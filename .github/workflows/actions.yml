@@ -21,20 +21,21 @@ jobs:
       - name: Set up docker
         shell: bash
         run: |
+          sudo /etc/init.d/mysql start
           docker-compose run api rails db:create
         env:
-          RAILS_ENV: development
+          RAILS_ENV: test
 
       - name: Run RSpec
         shell: bash
         run: |
           docker-compose run api bundle exec rspec
         env:
-          RAILS_ENV: development
+          RAILS_ENV: test
 
       - name: Run Rubocop
         shell: bash
         run: |
           docker-compose run api rubocop
         env:
-          RAILS_ENV: development
+          RAILS_ENV: test

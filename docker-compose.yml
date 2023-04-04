@@ -1,16 +1,29 @@
-version: "3"
+version: '3'
 
 services:
   db:
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: myapp_development
     command: --default-authentication-plugin=mysql_native_password
     volumes:
       - mysql-data:/var/lib/mysql
       - /tmp/dockerdir:/etc/mysql/conf.d/
     ports:
       - 3306:3306
+
+  test-db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: myapp_test
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - /tmp/dockerdir:/etc/mysql/conf.d/
+    ports:
+      - 3307:3306
 
   api:
     build:
@@ -42,7 +55,7 @@ services:
       # Fixes bug where websocket connection is fixed to default port 3000
       - WDS_SOCKET_PORT=0
     ports:
-      - "4000:3000"
+      - '4000:3000'
 
 volumes:
   mysql-data:
