@@ -22,6 +22,7 @@ jobs:
         shell: bash
         run: |
           docker-compose build
+          sudo /etc/init.d/mysql start
           docker-compose run api rails db:create
         env:
           RAILS_ENV: test
