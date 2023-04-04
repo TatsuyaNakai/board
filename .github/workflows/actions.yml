@@ -24,19 +24,19 @@ jobs:
       run: |
         docker-compose run api rake db:create
       env:
-        RAILS_ENV: test
+        RAILS_ENV: development
 
     - name: Run RSpec
       shell: bash
       run: |
         docker-compose run api bundle exec rspec
       env:
-        RAILS_ENV: test
+        RAILS_ENV: development
 
     - name: Run Rubocop
       shell: bash
       run: |
         docker-compose run api rubocop
       env:
-        RAILS_ENV: test
+        RAILS_ENV: development
         
