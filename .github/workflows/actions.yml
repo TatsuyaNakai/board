@@ -18,25 +18,44 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Set up docker
+      - name: Build docker
         shell: bash
-        run: |
-          docker-compose build
-          sudo /etc/init.d/mysql start
-          docker-compose run api rails db:create
+        run: docker-compose build
+        env:
+          RAILS_ENV: test
+
+      - name: Up docker
+        shell: bash
+        run: docker-compose up
+        env:
+          RAILS_ENV: test
+
+      - name: Sleep for waiting launch DB
+        shell: bash
+        run: sleep 1m
+        env:
+          RAILS_ENV: test
+
+      - name: Setup DB
+        shell: bash
+        run: docker-compose run --rm api rails db:create db:migrate
         env:
           RAILS_ENV: test
 
       - name: Run RSpec
         shell: bash
-        run: |
-          docker-compose run api bundle exec rspec
+        run: docker-compose run --rm api bundle exec rspec
         env:
           RAILS_ENV: test
 
       - name: Run Rubocop
         shell: bash
-        run: |
-          docker-compose run api rubocop
+        run: docker-compose run --rm api rubocop
+        env:
+          RAILS_ENV: test
+
+      - name: Down docker
+        shell: bash
+        run: docker-compose down
         env:
           RAILS_ENV: test
