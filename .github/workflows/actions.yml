@@ -26,7 +26,7 @@ jobs:
 
       - name: Up docker
         shell: bash
-        run: docker-compose up
+        run: docker-compose up -d
         env:
           RAILS_ENV: test
 
