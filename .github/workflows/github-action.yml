@@ -1,67 +1,42 @@
-name: Run rspec, rubocop
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will download a prebuilt Ruby version, install dependencies and run tests with Rake
+# For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
 
-on:
-  push:
-  pull_request:
+name: Ruby
+
+on: [push]
 
 jobs:
-  rspec:
+  test:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    services:
-      mysql:
-        image: mysql:8.0
-        ports:
-          - 3306:3306
+    strategy:
+      matrix:
+        ruby-version: ['2.6', '2.7', '3.0']
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up docker
+        shell: bash
+        run: |
+          docker-compose run api yarn install --check-files
+          docker-compose run api yarn upgrade
+          docker-compose run api rake db:create
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-        options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
+          RAILS_ENV: test
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-
-      - name: Cache node modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Bundler and gem install
+      - name: Run RSpec
+        shell: bash
         run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3 --path vendor/bundle
+          docker-compose run api bundle exec rspec
+        env:
+          RAILS_ENV: test
 
-      - name: Yarn install
-        run: yarn install --check-files
-
-      - name: Database create and migrate
+      - name: Run Rubocop
+        shell: bash
         run: |
-          cp config/database.yml.ci config/database.yml
-          bundle exec rails db:create RAILS_ENV=test
-          bundle exec rails db:migrate RAILS_ENV=test
-
-      - name: Run rspec
-        run: bundle exec rspec
-
-  rubocop:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-
-      - name: Run rubocop
-        run: bundle exec rubocop
+          docker-compose run api rubocop
+        env:
+          RAILS_ENV: test
