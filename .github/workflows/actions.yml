@@ -22,8 +22,6 @@ jobs:
     - name: Set up docker
       shell: bash
       run: |
-        docker-compose run api yarn install --check-files
-        docker-compose run api yarn upgrade
         docker-compose run api rake db:create
       env:
         RAILS_ENV: test
