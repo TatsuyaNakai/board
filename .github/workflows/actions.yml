@@ -28,7 +28,7 @@ jobs:
 
       - name: Sleep for waiting launch DB
         shell: bash
-        run: sleep 1m
+        run: sleep 3m
 
       - name: Setup DB
         shell: bash
