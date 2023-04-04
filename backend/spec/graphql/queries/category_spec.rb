@@ -12,9 +12,9 @@ RSpec.describe 'QueryType#categories' do
         }
       }
     QUERY
+    @category = FactoryBot.create(:category)
     result = MyappSchema.execute(query)
-    @category = Category.order(:created_at).first
-    @category_result = result['data']['categories'].first
+    @category_result = result['data']['categories'].last
   end
 
   it 'は、項目名を取得できること' do
