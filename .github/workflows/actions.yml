@@ -1,0 +1,49 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will download a prebuilt Ruby version, install dependencies and run tests with Rake
+# For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
+
+name: Ruby
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: ['3.0.5']
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build docker
+        shell: bash
+        run: docker-compose build
+
+      - name: Up docker
+        shell: bash
+        run: docker-compose up -d
+
+      - name: Sleep for waiting launch DB
+        shell: bash
+        run: sleep 3m
+
+      - name: Setup DB
+        shell: bash
+        run: |
+          docker-compose run --rm api rails db:create
+          docker-compose run --rm api rails db:migrate
+
+      - name: Run RSpec
+        shell: bash
+        run: docker-compose run --rm api bundle exec rspec
+
+      - name: Run Rubocop
+        shell: bash
+        run: docker-compose run --rm api rubocop
+
+      - name: Down docker
+        shell: bash
+        run: docker-compose down

@@ -18,9 +18,10 @@ RSpec.describe 'QueryType#category_posts' do
         }
       }
     QUERY
-    result = MyappSchema.execute(query, variables: { categoryId: 1 })
-    @post = Post.order(:created_at).first
-    @post_result = result['data']['categoryPosts'].first
+    category = FactoryBot.create(:category)
+    @post = category.posts.create(body: 'body', token: 'token')
+    result = MyappSchema.execute(query, variables: { categoryId: category.id })
+    @post_result = result['data']['categoryPosts'].last
   end
 
   it 'は、項目名を取得できること' do
