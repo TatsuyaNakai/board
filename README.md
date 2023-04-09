@@ -1,3 +1,11 @@
+## 管理者アカウント
+
+  15g079nt@gmail.com
+  
+  password
+
+ 
+
 ## 参考
 
 * Docker環境構築
