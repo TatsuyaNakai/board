@@ -1,6 +1,6 @@
 ## 管理者アカウント
 
-  15g079nt@gmail.com
+  sample_admin@gmail.com
   
   password
 
