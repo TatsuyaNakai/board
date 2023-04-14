@@ -11,7 +11,6 @@ const CURRENT_ADMIN_QUERY = gql`
 `;
 
 export const useCurrentAdminQuery = () => {
-	const { data, loading, error } =
-		useQuery<CurrentAdminQuery>(CURRENT_ADMIN_QUERY);
+	const { data, loading, error } = useQuery<CurrentAdminQuery>(CURRENT_ADMIN_QUERY);
 	return { data, loading, error };
 };

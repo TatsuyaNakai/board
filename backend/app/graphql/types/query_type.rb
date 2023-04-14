@@ -14,7 +14,9 @@ module Types
       argument :category_id, ID, required: true
     end
     def category_posts(category_id:)
-      Post.where(category_id: category_id).order(:created_at)
+      query = { category_id: category_id }
+      query.merge!(status: :public) unless context[:current_admin]
+      Post.where(query).order(:created_at)
     end
 
     field :admin, Types::AdminType, null: true do

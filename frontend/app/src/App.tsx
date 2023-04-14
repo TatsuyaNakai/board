@@ -10,11 +10,7 @@ import LoginForm from "./LoginForm";
 import NoRouteMatch from "./NoRouteMatch";
 
 function App() {
-	const {
-		data: categoriesData,
-		loading: categoriesLoading,
-		error: categoriesError,
-	} = useCategoriesQuery();
+	const { data: categoriesData, loading: categoriesLoading, error: categoriesError } = useCategoriesQuery();
 	const { data: adminData, loading: adminLoading } = useCurrentAdminQuery();
 
 	if (categoriesLoading || adminLoading) return <p>Loading...</p>;
@@ -23,10 +19,7 @@ function App() {
 	return (
 		<AdminProvider value={adminData?.currentAdmin}>
 			<Routes>
-				<Route
-					index
-					element={<Categories categories={categoriesData!.categories} />}
-				/>
+				<Route index element={<Categories categories={categoriesData!.categories} />} />
 				{categoriesData!.categories!.map((category, i: number) => (
 					<React.Fragment key={i}>
 						<Route
@@ -35,8 +28,8 @@ function App() {
 						/>
 					</React.Fragment>
 				))}
-				<Route path='/login' element={<LoginForm />} />
-				<Route path='*' element={<NoRouteMatch />} />
+				<Route path="/login" element={<LoginForm />} />
+				<Route path="*" element={<NoRouteMatch />} />
 			</Routes>
 		</AdminProvider>
 	);

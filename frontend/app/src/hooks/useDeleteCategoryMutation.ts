@@ -10,10 +10,9 @@ const DELETE_CATEGORY_MUTATION = gql`
 `;
 
 export const useDeleteCategoryMutation = () => {
-	const [deleteCategory, { loading, error }] =
-		useMutation<DeleteCategoryMutation>(DELETE_CATEGORY_MUTATION, {
-			refetchQueries: ["CategoriesQuery"],
-		});
+	const [deleteCategory, { loading, error }] = useMutation<DeleteCategoryMutation>(DELETE_CATEGORY_MUTATION, {
+		refetchQueries: ["CategoriesQuery"],
+	});
 
 	return { deleteCategory, loading, error };
 };

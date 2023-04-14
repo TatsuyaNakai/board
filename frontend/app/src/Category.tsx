@@ -45,14 +45,12 @@ export default function Category(props: Props) {
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
-	const isErrorCategoryAttributes = (
-		attribute: string
-	): attribute is CategoryAttributes => attribute.includes(attribute);
+	const isErrorCategoryAttributes = (attribute: string): attribute is CategoryAttributes =>
+		attribute.includes(attribute);
 	const setValidationErrors = (errors) => {
 		errors.forEach((error) => {
 			const { attribute } = error;
-			if (isErrorCategoryAttributes(attribute))
-				setError(attribute, { message: error.messages.join(" ") });
+			if (isErrorCategoryAttributes(attribute)) setError(attribute, { message: error.messages.join(" ") });
 		});
 	};
 
@@ -84,17 +82,17 @@ export default function Category(props: Props) {
 	};
 
 	return (
-		<li className='list-group-item d-flex justify-content-between align-items-center'>
+		<li className="list-group-item d-flex justify-content-between align-items-center">
 			<Link to={`/categories/${id}`}>{name}</Link>
 			{currentAdmin && (
 				<>
-					<Badge pill bg='secondary'>
+					<Badge pill bg="secondary">
 						{postsCnt}
 					</Badge>
-					<Button variant='danger' onClick={() => callDeleteCategory(id)}>
+					<Button variant="danger" onClick={() => callDeleteCategory(id)}>
 						削除する
 					</Button>
-					<Button variant='primary' onClick={handleShow}>
+					<Button variant="primary" onClick={handleShow}>
 						編集する
 					</Button>
 					{/* Modal */}
@@ -105,18 +103,18 @@ export default function Category(props: Props) {
 							</Modal.Header>
 							<Modal.Body>
 								<TextField
-									klass=''
-									id='name'
-									label='カテゴリ名'
+									klass=""
+									id="name"
+									label="カテゴリ名"
 									register={register("name")}
 									errorText={errors.name?.message}
 								/>
 							</Modal.Body>
 							<Modal.Footer>
-								<Button variant='secondary' onClick={handleClose}>
+								<Button variant="secondary" onClick={handleClose}>
 									閉じる
 								</Button>
-								<SubmitButton label='更新' />
+								<SubmitButton label="更新" />
 							</Modal.Footer>
 						</form>
 					</Modal>

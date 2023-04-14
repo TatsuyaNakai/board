@@ -39,14 +39,12 @@ export default function Categories(props: Props) {
 		clearErrors,
 	} = useForm<CategoryInputs>({ defaultValues: initialCategory });
 
-	const isErrorCategoryAttributes = (
-		attribute: string
-	): attribute is CategoryAttributes => attribute.includes(attribute);
+	const isErrorCategoryAttributes = (attribute: string): attribute is CategoryAttributes =>
+		attribute.includes(attribute);
 	const setValidationErrors = (errors) => {
 		errors.forEach((error) => {
 			const { attribute } = error;
-			if (isErrorCategoryAttributes(attribute))
-				setError(attribute, { message: error.messages.join(" ") });
+			if (isErrorCategoryAttributes(attribute)) setError(attribute, { message: error.messages.join(" ") });
 		});
 	};
 
@@ -72,32 +70,32 @@ export default function Categories(props: Props) {
 	};
 
 	return (
-		<div className='container-fluid'>
-			<h2 className='text-center my-4'>カテゴリ一覧</h2>
-			<ul className='list-group mb-4'>
+		<div className="container-fluid">
+			<h2 className="text-center my-4">カテゴリ一覧</h2>
+			<ul className="list-group mb-4">
 				{categories!.map((category, index: number) => (
 					<Category key={index} category={category} />
 				))}
 			</ul>
 			{currentAdmin && (
-				<form className='row g-3 mb-4' onSubmit={handleSubmit(onSubmit)}>
+				<form className="row g-3 mb-4" onSubmit={handleSubmit(onSubmit)}>
 					<TextField
-						klass='col-12'
-						id='name'
-						label='カテゴリ名'
+						klass="col-12"
+						id="name"
+						label="カテゴリ名"
 						register={register("name")}
 						errorText={errors.name?.message}
 					/>
-					<SubmitButton label='カテゴリ作成' />
+					<SubmitButton label="カテゴリ作成" />
 				</form>
 			)}
 			<div>
 				{currentAdmin ? (
-					<button className='btn btn-secondary' onClick={handleLogout}>
+					<button className="btn btn-secondary" onClick={handleLogout}>
 						ログアウト
 					</button>
 				) : (
-					<Link to='/login' className='btn btn-primary'>
+					<Link to="/login" className="btn btn-primary">
 						管理者ログイン
 					</Link>
 				)}
