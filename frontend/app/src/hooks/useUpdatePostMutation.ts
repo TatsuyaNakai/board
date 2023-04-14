@@ -13,17 +13,14 @@ const UPDATE_POST_MUTATION = gql`
 `;
 
 export const useUpdatePostMutation = () => {
-	const [updatePost, { loading, error }] = useMutation<UpdatePostMutation>(
-		UPDATE_POST_MUTATION,
-		{
-			refetchQueries: (mutationResult) => [
-				{
-					query: POSTS_QUERY,
-					variables: { id: mutationResult.data.updatePost.categoryId },
-				},
-			],
-		}
-	);
+	const [updatePost, { loading, error }] = useMutation<UpdatePostMutation>(UPDATE_POST_MUTATION, {
+		refetchQueries: (mutationResult) => [
+			{
+				query: POSTS_QUERY,
+				variables: { id: mutationResult.data.updatePost.categoryId },
+			},
+		],
+	});
 
 	return { updatePost, loading, error };
 };

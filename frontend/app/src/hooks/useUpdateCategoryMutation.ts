@@ -15,10 +15,9 @@ const UPDATE_CATEGORY_MUTATION = gql`
 `;
 
 export const useUpdateCategoryMutation = () => {
-	const [updateCategory, { loading, error }] =
-		useMutation<UpdateCategoryMutation>(UPDATE_CATEGORY_MUTATION, {
-			refetchQueries: ["CategoriesQuery"],
-		});
+	const [updateCategory, { loading, error }] = useMutation<UpdateCategoryMutation>(UPDATE_CATEGORY_MUTATION, {
+		refetchQueries: ["CategoriesQuery"],
+	});
 
 	return { updateCategory, loading, error };
 };

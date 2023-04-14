@@ -15,10 +15,9 @@ const CREATE_CATEGORY_MUTATION = gql`
 `;
 
 export const useCreateCategoryMutation = () => {
-	const [createCategory, { loading, error }] =
-		useMutation<CreateCategoryMutation>(CREATE_CATEGORY_MUTATION, {
-			refetchQueries: ["CategoriesQuery"],
-		});
+	const [createCategory, { loading, error }] = useMutation<CreateCategoryMutation>(CREATE_CATEGORY_MUTATION, {
+		refetchQueries: ["CategoriesQuery"],
+	});
 
 	return { createCategory, loading, error };
 };

@@ -16,13 +16,8 @@ export default function TextField(props: Props) {
 	return (
 		<div className={klass}>
 			<label htmlFor={id}>{label}</label>
-			<input
-				type={type ? type : "text"}
-				className='form-control'
-				id={id}
-				{...register}
-			/>
-			{errorText && <p className='text-danger'>{errorText}</p>}
+			<input type={type ? type : "text"} className="form-control" id={id} {...register} />
+			{errorText && <p className="text-danger">{errorText}</p>}
 		</div>
 	);
 }

@@ -26,16 +26,13 @@ export default function LoginForm() {
 		password: null,
 	});
 
-	const isErrorPostAttributes = (
-		attribute: string
-	): attribute is AdminAttributes => attribute.includes(attribute);
+	const isErrorPostAttributes = (attribute: string): attribute is AdminAttributes => attribute.includes(attribute);
 	const setValidationErrors = (errors) => {
 		clearErrors();
 
 		errors.forEach((error) => {
 			const { attribute } = error;
-			if (isErrorPostAttributes(attribute))
-				setError(attribute, { message: error.messages.join(" ") });
+			if (isErrorPostAttributes(attribute)) setError(attribute, { message: error.messages.join(" ") });
 		});
 	};
 
@@ -57,26 +54,26 @@ export default function LoginForm() {
 	};
 
 	return (
-		<div className='container-fluid'>
-			<Link to='/'>トップへ戻る</Link>
-			<h1 className='text-center'>管理者ログイン</h1>
-			<form className='form-signin' onSubmit={handleSubmit(onSubmit)}>
+		<div className="container-fluid">
+			<Link to="/">トップへ戻る</Link>
+			<h1 className="text-center">管理者ログイン</h1>
+			<form className="form-signin" onSubmit={handleSubmit(onSubmit)}>
 				<TextField
-					klass='mb-3'
-					id='email'
-					label='メールアドレス'
+					klass="mb-3"
+					id="email"
+					label="メールアドレス"
 					register={register("email")}
 					errorText={errors.email?.message}
 				/>
 				<TextField
-					klass='mb-3'
-					id='password'
-					label='パスワード'
-					type='password'
+					klass="mb-3"
+					id="password"
+					label="パスワード"
+					type="password"
 					register={register("password")}
 					errorText={errors.password?.message}
 				/>
-				<SubmitButton label='ログイン' />
+				<SubmitButton label="ログイン" />
 			</form>
 		</div>
 	);

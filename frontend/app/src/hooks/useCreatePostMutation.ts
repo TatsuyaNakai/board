@@ -18,17 +18,14 @@ const CREATE_POST_MUTATION = gql`
 `;
 
 export const useCreatePostMutation = () => {
-	const [createPost, { loading, error }] = useMutation<CreatePostMutation>(
-		CREATE_POST_MUTATION,
-		{
-			refetchQueries: (mutationResult) => [
-				{
-					query: POSTS_QUERY,
-					variables: { id: mutationResult.data.createPost.categoryId },
-				},
-			],
-		}
-	);
+	const [createPost, { loading, error }] = useMutation<CreatePostMutation>(CREATE_POST_MUTATION, {
+		refetchQueries: (mutationResult) => [
+			{
+				query: POSTS_QUERY,
+				variables: { id: mutationResult.data.createPost.categoryId },
+			},
+		],
+	});
 
 	return { createPost, loading, error };
 };

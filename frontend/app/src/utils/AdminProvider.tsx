@@ -9,7 +9,5 @@ type Props = {
 };
 
 export const AdminProvider = ({ children, value }: Props) => {
-	return (
-		<AdminContext.Provider value={value}>{children}</AdminContext.Provider>
-	);
+	return <AdminContext.Provider value={value}>{children}</AdminContext.Provider>;
 };
